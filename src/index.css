@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .zen-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.slate.800') transparent;
+  }
+
+  .zen-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .zen-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .zen-scrollbar::-webkit-scrollbar-thumb {
+    background: theme('colors.slate.800');
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+  }
+
+  .zen-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.cyan.900');
+    background-clip: content-box;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: theme('colors.slate.800');
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.slate.700');
+  }
+
+  /* Markdown Styling */
+  .markdown-body h1 {
+    @apply text-3xl font-bold text-white mb-6 border-b border-slate-800 pb-2;
+  }
+  .markdown-body h2 {
+    @apply text-2xl font-bold text-white mt-8 mb-4;
+  }
+  .markdown-body h3 {
+    @apply text-xl font-bold text-cyan-400 mt-6 mb-3;
+  }
+  .markdown-body p {
+    @apply text-slate-300 leading-relaxed mb-4;
+  }
+  .markdown-body ul {
+    @apply list-disc list-inside mb-4 space-y-2 text-slate-300;
+  }
+  .markdown-body code {
+    @apply bg-slate-950 px-1.5 py-0.5 rounded text-cyan-400 font-mono text-sm;
+  }
+  .markdown-body pre {
+    @apply bg-slate-950 p-4 rounded-xl border border-slate-800 my-6 overflow-x-auto;
+  }
+  .markdown-body pre code {
+    @apply bg-transparent p-0 text-slate-300;
+  }
+  .markdown-body strong {
+    @apply text-white font-bold;
+  }
+  .markdown-body blockquote {
+    @apply border-l-4 border-cyan-500 pl-4 italic text-slate-400 my-4;
+  }
+
+  /* Tutorial Highlighting */
+  .tutorial-highlight {
+    @apply ring-4 ring-cyan-500 ring-offset-4 ring-offset-slate-950 transition-all duration-500 z-50 relative;
+    animation: pulse-highlight 2s infinite;
+  }
+
+  @keyframes pulse-highlight {
+    0% { box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(6, 182, 212, 0.8); }
+    100% { box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.5); }
+  }
+}

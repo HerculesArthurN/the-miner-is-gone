@@ -1,0 +1,5 @@
+{
+  "name": "The Miner is Gone",
+  "description": "A TypeScript learning game where you control a mining drone using code.",
+  "requestFramePermissions": []
+}

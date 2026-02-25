@@ -11,6 +11,9 @@
 
 import { chapter1Levels } from './chapter-1';
 import { chapter2Levels } from './chapter-2';
+import { chapter3Levels } from './chapter-3';
+import { chapter4Levels } from './chapter-4';
+import { chapter5Levels } from './chapter-5';
 import { ILevelDefinition, IChapterDefinition } from '../types/level';
 
 // ─── Definição dos Capítulos ──────────────────────────────────────────────────
@@ -28,10 +31,25 @@ export const ALL_CHAPTERS: IChapterDefinition[] = [
         environment: 'Primeiros túneis. Fog of War leve. Minérios de tipos diferentes.',
         levels: chapter2Levels,
     },
+    {
+        chapter: 3,
+        title: 'Narrowing',
+        environment: 'Setores instáveis. Requer análise rigorosa de tipos para evitar falhas de runtime.',
+        levels: chapter3Levels,
+    },
+    {
+        chapter: 4,
+        title: 'More on Functions',
+        environment: 'Sistemas de comando avançados. Automação e sobrecarga de sensores.',
+        levels: chapter4Levels,
+    },
+    {
+        chapter: 5,
+        title: 'Object Types',
+        environment: 'Estruturas de dados complexas. Contêineres genéricos e tuplas de navegação.',
+        levels: chapter5Levels,
+    },
     // Capítulos futuros — adicione aqui quando implementados:
-    // { chapter: 3, title: 'Narrowing', ... },
-    // { chapter: 4, title: 'More on Functions', ... },
-    // { chapter: 5, title: 'Object Types', ... },
     // { chapter: 6, title: 'Generics', ... },
     // { chapter: 7, title: 'Classes', ... },
     // { chapter: 8, title: 'Type Manipulation', ... },

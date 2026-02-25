@@ -162,14 +162,14 @@ ${COMMON_TYPES}
 // ─── Mapa de Capítulo → TypeDefs ─────────────────────────────────────────────
 
 const TYPE_DEFS_BY_CHAPTER: Record<number, string> = {
-    1: CHAPTER_1_API,
-    2: CHAPTER_2_API,
-    3: CHAPTER_3_API,
-    4: CHAPTER_4_API,
-    5: CHAPTER_5_API,
-    6: CHAPTER_6_API,
-    7: CHAPTER_7_API,
-    8: CHAPTER_8_API,
+  1: CHAPTER_1_API,
+  2: CHAPTER_2_API,
+  3: CHAPTER_3_API,
+  4: CHAPTER_4_API,
+  5: CHAPTER_5_API,
+  6: CHAPTER_6_API,
+  7: CHAPTER_7_API,
+  8: CHAPTER_8_API,
 };
 
 /**
@@ -177,7 +177,7 @@ const TYPE_DEFS_BY_CHAPTER: Record<number, string> = {
  * Deve ser injetado no Monaco via addExtraLib() ao montar o editor.
  */
 export function getTypeDefsForChapter(chapter: number): string {
-    return TYPE_DEFS_BY_CHAPTER[chapter] ?? TYPE_DEFS_BY_CHAPTER[1];
+  return TYPE_DEFS_BY_CHAPTER[chapter] ?? TYPE_DEFS_BY_CHAPTER[1];
 }
 
 /**
@@ -185,11 +185,16 @@ export function getTypeDefsForChapter(chapter: number): string {
  * Permite override por nível (um nível pode ter tipos customizados).
  */
 export function getTypeDefsForLevel(
-    chapter: number,
-    customTypeDefs?: string
+  chapter: number,
+  customTypeDefs?: string
 ): string {
-    if (customTypeDefs && customTypeDefs.trim()) {
-        return customTypeDefs;
-    }
-    return getTypeDefsForChapter(chapter);
+  const baseApi = getTypeDefsForChapter(chapter);
+  if (customTypeDefs && customTypeDefs.trim()) {
+    return `
+${baseApi}
+// ─── Level Specific Overrides ───────────────────────────────────────
+${customTypeDefs}
+        `;
+  }
+  return baseApi;
 }

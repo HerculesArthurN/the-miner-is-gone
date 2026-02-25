@@ -1,169 +1,72 @@
 # Plano de Implementação — The Miner is Gone
-**Baseado no PRD v2.0 | Data: 2026-02-24**
+**Baseado no PRD v2.0 | Data: 2026-02-25**
 
 ## Estado Atual da Base de Código
 
-O projeto já possui uma estrutura funcional:
-- ✅ React 18 + TypeScript + Vite
-- ✅ Monaco Editor integrado (`@monaco-editor/react`)
-- ✅ Motor de jogo baseado em React state (sem Zustand ainda)
-- ✅ Grid 2D com drone animado
-- ✅ 7 fases básicas em `levels.ts`
-- ✅ Execução via `new Function()` (correto)
-- ❌ **Transpiler usa Regex** — proibido pelo PRD (falha em Generics)
-- ❌ IntelliSense não é progressivo por nível (todos os tipos expostos sempre)
-- ❌ Sem proteção de timeout/loop infinito
-- ❌ Fases não seguem o TypeScript Handbook
-- ❌ Sem Fog of War
-- ❌ Sem sistema de medalhas
-- ❌ Sem link para documentação no briefing
+O projeto atingiu maturidade técnica significativa:
+- ✅ **Transpiler Real**: Usando `ts.transpileModule()`. Suporta Generics, Conditional Types, etc.
+- ✅ **Sandbox Seguro**: Timeout (10s), limite de chamadas (20.000) e injeção dinâmica de métodos.
+- ✅ **IntelliSense Progressivo**: Tipos injetados dinamicamente no Monaco por capítulo/nível.
+- ✅ **Motor Enriquecido**: Sistema de bateria, ticks, cargo, medalhas e fog of war.
+- ✅ **Conteúdo**: 29 níveis implementados (Capítulos 1 ao 5).
+- ✅ **Aesthetics**: UI premium com animações, terminal funcional e link direto ao Handbook.
 
 ---
 
 ## Fases de Implementação
 
-### 🔴 FASE 1 — Fundação Técnica (Crítica)
-**Prioridade máxima. Resolver débito técnico antes de adicionar conteúdo.**
+### ✅ FASE 1 — Fundação Técnica (CONCLUÍDA)
+- [X] Transpiler oficial TypeScript
+- [X] Sandbox com timeout e proteção contra loops
+- [X] Contrato `ILevelDefinition` type-safe
+- [X] IntelliSense progressivo via `addExtraLib`
 
-#### 1.1 Substituir Transpiler (BLOQUEADOR)
-- [ ] Instalar `typescript` como dependência de runtime (já existe como devDep — mover)
-- [ ] Criar `src/core/compiler/transpiler.ts` usando `ts.transpileModule()`
-- [ ] Remover `simpleTranspile()` de `CodeExecutor.ts`
-- [ ] Testar com código contendo Generics: `function id<T>(x: T): T { return x; }`
+### ✅ FASE 2 — Conteúdo: Capítulos 1 e 2 (CONCLUÍDA)
+- [X] Cap 1: The Basics (4 níveis)
+- [X] Cap 2: Everyday Types (10 níveis)
 
-#### 1.2 Proteção de Loops Infinitos
-- [ ] Criar `src/core/compiler/sandbox.ts`
-- [ ] Implementar timeout de 5000ms via `Promise.race()`
-- [ ] Implementar contador de iterações no proxy da API (max 10.000 calls)
-- [ ] Mensagens de erro temáticas no console visual
-
-#### 1.3 Refatorar Tipos Base
-- [ ] Expandir `src/types/game.ts`: adicionar `FogOfWar`, `Wall`, `Hazard`, `Portal` ao `CellType`
-- [ ] Adicionar `battery`, `cargo`, `ticks` ao `GameState`
-- [ ] Criar `src/types/level.ts` com `ILevelDefinition` do PRD
-
-#### 1.4 IntelliSense Progressivo
-- [ ] Criar `src/core/ide/typeDefs.ts` — funções que retornam strings `.d.ts` por capítulo
-- [ ] Atualizar `handleEditorMount` em `App.tsx` para injetar tipos do nível atual
-- [ ] Garantir que `strict: true` e `noImplicitAny: true` estão sempre ativos
+### ✅ FASE 3 — Conteúdo: Capítulos 3, 4 e 5 (CONCLUÍDA)
+- [X] Cap 3: Narrowing (6 níveis) — Uniões discriminadas, predicados, `never`.
+- [X] Cap 4: Functions (4 níveis) — Overloads, Generics em funções, Rest params.
+- [X] Cap 5: Object Types (5 níveis) — Property modifiers, Index signatures, Tuplas.
 
 ---
 
-### 🟡 FASE 2 — Conteúdo: Capítulos 1 e 2
-**Implementar os primeiros 14 níveis seguindo o TypeScript Handbook.**
+### 🟡 FASE 4 — Conteúdo: Capítulos 6 e 7
+**Generics e Classes — O Drone se torna modular.**
 
-#### 2.1 Estrutura de Diretórios
-```
-src/levels/
-  chapter-1/
-    1-1-static-type-checking.ts
-    1-2-non-exception-failures.ts
-    1-3-types-for-tooling.ts
-    1-4-strictness.ts
-    index.ts
-  chapter-2/
-    2-1-primitives.ts
-    2-2-arrays.ts
-    2-3-no-any.ts
-    2-4-functions.ts
-    2-5-object-types.ts
-    2-6-union-types.ts
-    2-7-type-aliases-vs-interfaces.ts
-    2-8-type-assertions.ts
-    2-9-literal-types.ts
-    2-10-enums.ts
-    index.ts
-  index.ts  ← registra todos os capítulos
-```
+#### 6. Generics (Capítulo 6)
+- **Nível 6.1: Generic Classes**: Criar um hardware modular `Module<T>`.
+- **Nível 6.2: Constraints**: Usar `T extends { weight: number }`.
+- **Nível 6.3: Default types**: `Module<T = Default>`.
 
-#### 2.2 Para cada nível, implementar `ILevelDefinition`:
-- `id`, `chapter`, `title`, `handbookRef`
-- `mission.briefing` + `mission.objective`
-- `initialGrid`, `hardware`
-- `apiTypeDefs` (string .d.ts)
-- `starterCode`
-- `victoryCondition`
-- `scoring` (silver: sem `any`; gold: dentro dos ticks)
+#### 7. Classes (Capítulo 7)
+- **Nível 7.1: Inheritance**: Criar um `ScoutDrone` que estende `BaseDrone`.
+- **Nível 7.2: Private/Protected**: Encapsular a bateria.
+- **Nível 7.3: Absolute vs Static**: Usar métodos estáticos para transmissões de rede.
 
 ---
 
-### 🟡 FASE 3 — Conteúdo: Capítulos 3, 4 e 5
-**Narrowing, Functions e Object Types — nível intermediário.**
+### 🔵 FASE 5 — Conteúdo: Capítulo 8 (Type Manipulation)
+**Type Gymnastics — O nível final.**
 
-Mesma estrutura da Fase 2. Mecânicas novas a introduzir:
-- Fog of War leve (Capítulo 3)
-- Discriminated unions visuais (células com `kind` property)
-- Grid maior (7×7)
-
----
-
-### 🟢 FASE 4 — Conteúdo: Capítulos 6 e 7
-**Generics e Classes — nível avançado.**
-
-Mecânicas novas:
-- Portal cells (Generics: "o drone se adapta ao ambiente")
-- Multiple drones display (Classes: herança visual)
-- Grid 10×10
+No Capítulo 8, o drone entra em uma zona de alta interferência. O código JavaScript para de funcionar. O jogador deve resolver os problemas APENAS no sistema de tipos (Type-level programming).
+- **Nível 8.1: keyof / typeof**: Mapear status dinamicamente.
+- **Nível 8.2: Indexed Access**: Criar tipos a partir do inventário.
+- **Nível 8.3: Conditional Types**: "Se material X, então carga Y".
+- **Nível 8.4: Mapped Types**: Tornar todas as propriedades de um bloco `readonly`.
 
 ---
 
-### 🟢 FASE 5 — Conteúdo: Capítulo 8 (Type Manipulation)
-**Type Gymnastics — expert.**
-
-Mecânica especial:
-- No Capítulo 8 final, o grid visual é substituído por uma visualização do sistema de tipos
-- O "deploy" não executa JavaScript — apenas verifica se os tipos compilam
-
----
-
-### 🔵 FASE 6 — UI/UX e Polimento
-- [ ] Sistema de medalhas (Bronze/Prata/Ouro) com persistência no localStorage
-- [ ] Tela de progresso (mapa dos capítulos)
-- [ ] Link para docs TS sempre visível no terminal/briefing  
-- [ ] Fog of War animado com Framer Motion
-- [ ] Efeitos de `thermal throttling` (shake + cor vermelha)
-- [ ] README atualizado
+### 🎨 FASE 6 — UI/UX e Landing Page
+- [ ] Finalizar `LandingPage.tsx` e integrá-lo com `react-router-dom`.
+- [ ] Criar tela de "Game Over" temática e "Victory Screen" com medalhas históricas.
+- [ ] Adicionar efeitos sonoros (opcional/placeholders).
+- [ ] Polir o `InteractiveTutorial` para novos capítulos.
 
 ---
 
 ## Decisões Técnicas
 
-### Por que `ts.transpileModule` e não Babel?
-`ts.transpileModule` é a escolha correta porque:
-1. Vem da própria equipe do TypeScript
-2. Preserva todos os Generics, Conditional Types e Mapped Types
-3. `typescript` já é uma devDependency — precisamos apenas movê-la para `dependencies`
-
-### Como evitar bundle de 60MB?
-Usar `typescript` no modo browser via dynamic import ES module: o Vite faz tree-shaking e inclui apenas `ts.transpileModule`, não todo o compilador. Tamanho real no bundle: ~1.5MB (gzipped: ~400KB).
-
-### Estrutura de `ILevelDefinition` vs `LevelConfig` atual
-O `LevelConfig` atual será **substituído** pelo `ILevelDefinition` do PRD. A migração é:
-- `gridSetup` → `initialGrid` (array 2D declarativo, sem função)
-- `winCondition(grid)` → `victoryCondition(GameState)` (acesso a mais contexto)
-- `tutorial` + `steps` → `mission.briefing` (markdown) + inline no componente
-
----
-
-## Arquivos a Criar/Modificar
-
-### Novos arquivos
-- `src/core/compiler/transpiler.ts`
-- `src/core/compiler/sandbox.ts`
-- `src/core/engine/tickSystem.ts`
-- `src/core/ide/typeDefs.ts`
-- `src/types/level.ts`
-- `src/levels/chapter-*/` (todos os níveis)
-- `src/levels/index.ts`
-
-### Arquivos a modificar significativamente
-- `src/types/game.ts` — expandir tipos
-- `src/lib/CodeExecutor.ts` — usar transpiler real
-- `src/lib/GameEngine.ts` — sistema de battery/ticks
-- `src/lib/levels.ts` → **substituir** pela estrutura de diretórios
-- `src/App.tsx` — IntelliSense progressivo + link docs
-
-### Arquivos a preservar intactos
-- `src/components/GameGrid.tsx` (funciona bem, pode evoluir)
-- `vite.config.ts`
-- `tsconfig.json`
+- **Dynamic Injection**: O Sandbox agora injeta qualquer método da API automaticamente como global. Isso facilita muito a criação de níveis com APIs customizadas sem mexer no motor core.
+- **Overloads**: O `scanDrone` suporta múltiplas assinaturas, provando que o transpiler real lidou bem com o código do jogador (o TypeScript Handbook usa muito overloads).

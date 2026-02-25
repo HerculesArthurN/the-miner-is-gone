@@ -221,10 +221,18 @@ export const useGameEngine = () => {
 
   // ─── Scan ─────────────────────────────────────────────────────────────────────
 
-  const scanDrone = useCallback(async (dx = 0, dy = 0) => {
+  const scanDrone = useCallback(async (dxOrConfig: number | { x: number; y: number } = 0, dy = 0) => {
     const { x, y } = logicRef.current.drone;
-    const targetX = x + dx;
-    const targetY = y + dy;
+    let targetX: number;
+    let targetY: number;
+
+    if (typeof dxOrConfig === 'object') {
+      targetX = dxOrConfig.x;
+      targetY = dxOrConfig.y;
+    } else {
+      targetX = x + dxOrConfig;
+      targetY = y + dy;
+    }
     const level = ALL_LEVELS.find(l => l.id === currentLevelId) ?? FIRST_LEVEL;
     const gridRows = level.initialGrid.length;
     const gridCols = level.initialGrid[0].length;
@@ -309,6 +317,21 @@ export const useGameEngine = () => {
       nextLevel: goToNextLevel,
       goToLevel,
       checkForbiddenPatterns,
+
+      // ─── Extra Utilities for Chapters 4 & 5 ───────────────────────
+      autoMine: async (filter: (m: string) => boolean) => {
+        const { x, y } = logicRef.current.drone;
+        const cell = logicRef.current.grid[y][x];
+        if (filter(cell.type)) await mineDrone();
+      },
+      batchLog: (...msgs: string[]) => msgs.forEach(m => addLog('info', m)),
+      teleportTo: async (coords: [number, number, number]) => {
+        await moveDrone(coords[0], coords[1]);
+      },
+      shipBox: (box: any) => addLog('success', `📦 Box [${box.label}] enviada com: ${JSON.stringify(box.content)}`),
+      archiveMission: (m: any) => addLog('system', `📁 Missão ${m.id} arquivada.`),
+      updateMarket: (p: any) => addLog('system', `📈 Mercado atualizado: ${Object.keys(p).length} itens.`),
+      analyzeIsotope: (d: any) => addLog('warning', `⚠️ Radiação: ${d.radiationLevel} uSv/h.`),
     },
   };
 };

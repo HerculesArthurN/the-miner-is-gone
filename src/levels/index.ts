@@ -14,6 +14,9 @@ import { chapter2Levels } from './chapter-2';
 import { chapter3Levels } from './chapter-3';
 import { chapter4Levels } from './chapter-4';
 import { chapter5Levels } from './chapter-5';
+import { chapter6Levels } from './chapter-6';
+import { chapter7Levels } from './chapter-7';
+import { chapter8Levels } from './chapter-8';
 import { ILevelDefinition, IChapterDefinition } from '../types/level';
 
 // ─── Definição dos Capítulos ──────────────────────────────────────────────────
@@ -49,10 +52,24 @@ export const ALL_CHAPTERS: IChapterDefinition[] = [
         environment: 'Estruturas de dados complexas. Contêineres genéricos e tuplas de navegação.',
         levels: chapter5Levels,
     },
-    // Capítulos futuros — adicione aqui quando implementados:
-    // { chapter: 6, title: 'Generics', ... },
-    // { chapter: 7, title: 'Classes', ... },
-    // { chapter: 8, title: 'Type Manipulation', ... },
+    {
+        chapter: 6,
+        title: 'Generics',
+        environment: 'Abstrações poderosas. Reutilização de código com segurança de tipos universal.',
+        levels: chapter6Levels,
+    },
+    {
+        chapter: 7,
+        title: 'Classes',
+        environment: 'Arquitetura de hardware. Herança, visibilidade e moldes abstratos para drones.',
+        levels: chapter7Levels,
+    },
+    {
+        chapter: 8,
+        title: 'Type Manipulation',
+        environment: 'Zona de alta radiação magnética. O sistema deve ser reconstruído no nível de tipos.',
+        levels: chapter8Levels,
+    },
 ];
 
 // ─── Lista plana de todos os níveis ──────────────────────────────────────────

@@ -49,7 +49,7 @@ export const HudButton = ({
             )}
             {...props}
         >
-            <span className="relative z-10">{children}</span>
+            <span className="relative z-10">{children as React.ReactNode}</span>
             <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
         </motion.button>
     );

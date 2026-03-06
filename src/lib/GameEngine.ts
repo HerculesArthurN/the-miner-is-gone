@@ -332,6 +332,22 @@ export const useGameEngine = () => {
       archiveMission: (m: any) => addLog('system', `📁 Missão ${m.id} arquivada.`),
       updateMarket: (p: any) => addLog('system', `📈 Mercado atualizado: ${Object.keys(p).length} itens.`),
       analyzeIsotope: (d: any) => addLog('warning', `⚠️ Radiação: ${d.radiationLevel} uSv/h.`),
+
+      // ─── Extra Utilities for Chapter 8 ──────────────────────────
+      getStatusValue: (key: string) => {
+        if (key === 'battery') return logicRef.current.drone.battery;
+        if (key === 'position') return `[${logicRef.current.drone.x},${logicRef.current.drone.y}]`;
+        if (key === 'cargo') return logicRef.current.drone.cargo.length;
+        return null;
+      },
+      validateSensorData: (d: any) => d.active === true,
+      checkPower: (p: any) => p.voltage > 10 && p.stable,
+      downloadData: (mode: string) => mode === 'raw' ? { raw: true } : { refined: true },
+      applyStrictConfig: (c: any) => addLog('system', `🛡️ Configuração blindada: Speed ${c.speed}`),
+      blastPortal: async (code: string) => {
+        addLog('success', `🌌 Portal aberto com código: ${code}`);
+        // No futuro isso poderia teleportar ou mudar o grid, por agora é narrativo.
+      },
     },
   };
 };

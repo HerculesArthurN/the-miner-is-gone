@@ -32,37 +32,29 @@ O projeto atingiu maturidade técnica significativa:
 
 ---
 
-### 🟡 FASE 4 — Conteúdo: Capítulos 6 e 7
+### ✅ FASE 4 — Conteúdo: Capítulos 6 e 7 (CONCLUÍDA)
 **Generics e Classes — O Drone se torna modular.**
 
-#### 6. Generics (Capítulo 6)
-- **Nível 6.1: Generic Classes**: Criar um hardware modular `Module<T>`.
-- **Nível 6.2: Constraints**: Usar `T extends { weight: number }`.
-- **Nível 6.3: Default types**: `Module<T = Default>`.
-
-#### 7. Classes (Capítulo 7)
-- **Nível 7.1: Inheritance**: Criar um `ScoutDrone` que estende `BaseDrone`.
-- **Nível 7.2: Private/Protected**: Encapsular a bateria.
-- **Nível 7.3: Absolute vs Static**: Usar métodos estáticos para transmissões de rede.
+- [X] Cap 6: Generics (6 níveis) — Constraints, Type variables, Generic Interfaces/Classes.
+- [X] Cap 7: Classes (5 níveis) — Inheritance, Visibility, Abstract classes, Static members.
 
 ---
 
-### 🔵 FASE 5 — Conteúdo: Capítulo 8 (Type Manipulation)
+### ✅ FASE 5 — Conteúdo: Capítulo 8 (Type Manipulation) (CONCLUÍDA)
 **Type Gymnastics — O nível final.**
 
-No Capítulo 8, o drone entra em uma zona de alta interferência. O código JavaScript para de funcionar. O jogador deve resolver os problemas APENAS no sistema de tipos (Type-level programming).
-- **Nível 8.1: keyof / typeof**: Mapear status dinamicamente.
-- **Nível 8.2: Indexed Access**: Criar tipos a partir do inventário.
-- **Nível 8.3: Conditional Types**: "Se material X, então carga Y".
-- **Nível 8.4: Mapped Types**: Tornar todas as propriedades de um bloco `readonly`.
+- [X] Cap 8: Type Manipulation (6 níveis) — `keyof`, `typeof`, Indexed Access, Conditional Types, Mapped Types e Template Literals.
 
 ---
 
-### 🎨 FASE 6 — UI/UX e Landing Page
+### 🟢 FASE 6 — UI/UX, Landing Page e Polimento
+**Tornar o jogo um produto final de alto impacto.**
+
 - [ ] Finalizar `LandingPage.tsx` e integrá-lo com `react-router-dom`.
 - [ ] Criar tela de "Game Over" temática e "Victory Screen" com medalhas históricas.
-- [ ] Adicionar efeitos sonoros (opcional/placeholders).
-- [ ] Polir o `InteractiveTutorial` para novos capítulos.
+- [ ] Implementar persistência de progresso no `localStorage`.
+- [ ] Melhorar visual do Ground/Walls com texturas ou SVG dinâmico.
+- [ ] README atualizado com instruções de contribuição.
 
 ---
 

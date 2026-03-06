@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Flame, Clock, ShieldCheck, FlameKindle } from 'lucide-react';
+import { Flame, Clock, ShieldCheck, Cpu } from 'lucide-react';
 
 const scribeStats = [
     {
@@ -31,7 +31,7 @@ const scribeStats = [
         label: 'RUNE_COMPAT',
         value: 'MAX',
         sub: 'Type Coverage Level',
-        icon: FlameKindle,
+        icon: Cpu,
         valueColor: 'text-[#e5d8b5]',
         bgGlow: 'from-[#e5d8b5]/10',
     }

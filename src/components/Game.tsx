@@ -332,10 +332,10 @@ export function Game() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0 group">
             <div className="w-10 h-10 rounded shadow-[inset_0_0_8px_rgba(93,64,55,0.5)] bg-[#e6c280] border-4 border-[#8d6e63] p-1.5 transition-all duration-300 group-hover:scale-105">
-              <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter drop-shadow opacity-90 group-hover:opacity-100" />
+              <img src="/logo.png" alt="Logo" className="w-full h-full object-contain filter drop-shadow opacity-90 group-hover:opacity-100" />
             </div>
             <span className="text-xl font-bold font-serif tracking-widest text-[#b71c1c] uppercase hidden sm:block drop-shadow-sm">
-              The Miner is Gone
+              The Master is Gone
             </span>
           </Link>
 

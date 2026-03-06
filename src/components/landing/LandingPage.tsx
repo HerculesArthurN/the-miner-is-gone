@@ -22,11 +22,11 @@ export const LandingPage: React.FC = () => {
             <nav className="fixed top-0 w-full z-50 border-b-8 border-[#5d4037] bg-[#f4ebd8]/95 backdrop-blur-md px-6 py-4 flex items-center justify-between shadow-[0_6px_25px_rgba(93,64,55,0.4)]">
                 <div className="flex items-center gap-4">
                     <div className="w-14 h-14 border-4 border-[#8d6e63] p-2 flex items-center justify-center bg-[#e6c280] rounded shadow-[inset_0_0_10px_rgba(93,64,55,0.5)]">
-                        <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(62,39,35,0.8)]" />
+                        <img src="/logo.png" alt="Logo" className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(62,39,35,0.8)]" />
                     </div>
                     <div className="flex flex-col">
                         <span className="text-[#b71c1c] font-bold font-serif text-2xl leading-none uppercase drop-shadow-sm tracking-widest">
-                            The Miner is Gone
+                            The Master is Gone
                         </span>
                         <span className="text-[11px] font-mono text-[#8d6e63] tracking-[0.2em] font-bold pt-1">
                             SCRIBE_VER: 2.0.4-RUNIC
@@ -266,9 +266,9 @@ export const LandingPage: React.FC = () => {
 
                     <div className="flex items-center gap-8">
                         <div className="w-20 h-20 border-4 border-[#5d4037] p-4 flex items-center justify-center bg-[#fdf6e3] rounded shadow-[4px_4px_0_rgba(93,64,55,0.4)]">
-                            <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter drop-shadow hover:scale-105 transition-transform" />
+                            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain filter drop-shadow hover:scale-105 transition-transform" />
                         </div>
-                        <h1 className="text-4xl font-bold font-serif text-[#b71c1c] uppercase tracking-[0.2em] drop-shadow-sm">The Miner is Gone</h1>
+                        <h1 className="text-4xl font-bold font-serif text-[#b71c1c] uppercase tracking-[0.2em] drop-shadow-sm">The Master is Gone</h1>
                     </div>
                     <p className="text-[#5d4037] font-serif text-lg max-w-2xl text-center leading-relaxed font-semibold">
                         Uma forja educacional para engenheiros soberanos. Nossos Golems não sofrem dano durante as compilações, apenas arranhões nas pedras.

@@ -1,4 +1,4 @@
-# Plano de Implementação — The Miner is Gone
+# Plano de Implementação — The Master is Gone
 **Baseado no PRD v2.0 | Data: 2026-02-25**
 
 ## Estado Atual da Base de Código

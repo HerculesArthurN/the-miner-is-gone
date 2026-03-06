@@ -1,5 +1,5 @@
 # Product Requirements Document (PRD)
-# The Miner is Gone
+# The Master is Gone
 
 **Versão:** 2.0  
 **Data:** 2026-02-24  
@@ -31,7 +31,7 @@
 
 ### 1.1 Missão do Produto
 
-**"The Miner is Gone"** é um jogo web educativo de automação onde o jogador escreve a Magia Rúnica do **TypeScript** para controlar Golens mineradores de pedra e ferro. A premissa é simples: o Mestre da Guilda desapareceu e deixou apenas os antigos pergaminhos de documentação. O jogador, um Aprendiz Forjador, precisa escrever os feitiços precisos que mantêm a operação da forja funcionando em segurança.
+**"The Master is Gone"** é um jogo web educativo de automação onde o jogador escreve a Magia Rúnica do **TypeScript** para controlar Golens mineradores de pedra e ferro. A premissa é simples: o Mestre da Guilda desapareceu e deixou apenas os antigos pergaminhos de documentação. O jogador, um Aprendiz Forjador, precisa escrever os feitiços precisos que mantêm a operação da forja funcionando em segurança.
 
 A progressão do jogo segue **rigorosamente a ordem do TypeScript Handbook oficial** — cada seção da documentação se torna um conjunto de missões. O jogador não apenas aprende TypeScript: ele aprende a *ler documentação técnica*, a habilidade mais valiosa de um desenvolvedor.
 
@@ -686,4 +686,4 @@ const handleEditorMount = (editor: IStandaloneCodeEditor, monaco: Monaco) => {
 
 ---
 
-*PRD v2.0 — "The Miner is Gone". O jogo e o Handbook andam juntos.*
+*PRD v2.0 — "The Master is Gone". O jogo e o Handbook andam juntos.*

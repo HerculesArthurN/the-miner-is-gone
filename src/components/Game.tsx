@@ -32,7 +32,9 @@ const MEDAL_CONFIG = {
 export function Game() {
   const { gameState, actions, currentLevel, allLevels } = useGameEngine();
 
-  const [code, setCode] = useState(currentLevel.starterCode);
+  const [code, setCode] = useState(() => {
+    return localStorage.getItem(`${STORAGE_KEY}_${currentLevel.id}`) ?? currentLevel.starterCode;
+  });
   const [isRunning, setIsRunning] = useState(false);
   const editorRef = useRef<any>(null);
   const monacoRef = useRef<any>(null);
@@ -53,7 +55,8 @@ export function Game() {
   // ─── Quando o nível muda ────────────────────────────────────────────────────
 
   useEffect(() => {
-    setCode(currentLevel.starterCode);
+    const saved = localStorage.getItem(`${STORAGE_KEY}_${currentLevel.id}`);
+    setCode(saved ?? currentLevel.starterCode);
     setShowBriefing(true);
     updateMonacoTypeDefs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -207,18 +210,18 @@ export function Game() {
   // ─── Level Map Panel ────────────────────────────────────────────────────────
 
   const LevelMapPanel = () => (
-    <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl">
-        <div className="p-4 border-b border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-slate-200 font-bold">
-            <Map size={20} className="text-cyan-400" />
-            Mapa de Progresso
+    <div className="fixed inset-0 z-50 bg-[#3e2723]/80 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-[#fdf6e3] border-8 border-[#8d6e63] rounded-sm w-full max-w-2xl max-h-[80vh] flex flex-col shadow-[12px_12px_0_rgba(62,39,35,0.4)]">
+        <div className="p-4 border-b-4 border-[#8d6e63] flex items-center justify-between bg-[#e6c280]">
+          <div className="flex items-center gap-2 text-[#b71c1c] font-bold font-serif text-xl tracking-wide uppercase">
+            <Map size={24} className="text-[#b71c1c]" />
+            Mapa do Scriptorium
           </div>
-          <button onClick={() => setShowLevelMap(false)} className="p-1 hover:bg-slate-800 rounded">
-            <X size={18} className="text-slate-400" />
+          <button onClick={() => setShowLevelMap(false)} className="p-1 hover:bg-[#d7b06b] rounded text-[#3e2723] transition-colors">
+            <X size={24} strokeWidth={2.5} />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto p-4 space-y-3">
+        <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
           {allLevels.map(level => {
             const isCurrent = level.id === currentLevel.id;
             return (
@@ -226,24 +229,24 @@ export function Game() {
                 key={level.id}
                 onClick={() => { actions.goToLevel(level.id); setShowLevelMap(false); }}
                 className={clsx(
-                  'w-full text-left p-3 rounded-xl border transition-all',
+                  'w-full text-left p-3 rounded-sm border-2 transition-all shadow-sm',
                   isCurrent
-                    ? 'bg-cyan-950/50 border-cyan-500/50 ring-1 ring-cyan-500/30'
-                    : 'bg-slate-950/30 border-slate-800 hover:border-slate-600'
+                    ? 'bg-[#1b5e20]/10 border-[#1b5e20] ring-2 ring-[#1b5e20]/50 shadow-[4px_4px_0_rgba(27,94,32,0.2)]'
+                    : 'bg-[#f4ebd8] border-[#d7b06b] hover:border-[#b71c1c] hover:shadow-[4px_4px_0_rgba(183,28,28,0.15)] hover:-translate-y-0.5'
                 )}
               >
                 <div className="flex items-center gap-3">
                   <div className={clsx(
-                    'w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold font-mono shrink-0',
-                    isCurrent ? 'bg-cyan-500 text-slate-950' : 'bg-slate-800 text-slate-400'
+                    'w-10 h-10 rounded shadow-inner flex items-center justify-center text-sm font-bold font-serif shrink-0 border-2',
+                    isCurrent ? 'bg-[#1b5e20] text-[#fdf6e3] border-[#144d18]' : 'bg-[#e6c280] text-[#5d4037] border-[#d7b06b]'
                   )}>
-                    {level.chapter}.{level.levelInChapter}
+                    Ato {level.chapter}.{level.levelInChapter}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-slate-200 truncate">{level.title}</div>
-                    <div className="text-xs text-slate-500 truncate">{level.handbookRef.section}</div>
+                    <div className="text-base font-bold text-[#3e2723] font-serif uppercase tracking-wide truncate">{level.title}</div>
+                    <div className="text-xs text-[#8d6e63] font-mono font-bold truncate">{level.handbookRef.section}</div>
                   </div>
-                  {isCurrent && <ChevronRight size={16} className="text-cyan-400 shrink-0" />}
+                  {isCurrent && <ChevronRight size={20} className="text-[#1b5e20] shrink-0" strokeWidth={3} />}
                 </div>
               </button>
             );
@@ -256,59 +259,57 @@ export function Game() {
   // ─── Briefing Panel ─────────────────────────────────────────────────────────
 
   const BriefingPanel = () => (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl">
+    <div className="fixed inset-0 z-50 bg-[#3e2723]/80 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-[#fdf6e3] border-8 border-[#8d6e63] rounded-sm w-full max-w-2xl max-h-[85vh] flex flex-col shadow-[12px_12px_0_rgba(62,39,35,0.4)]">
         {/* Header */}
-        <div className="p-4 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-4 border-b-4 border-[#8d6e63] flex items-center justify-between bg-[#e6c280]">
           <div className="flex items-center gap-3">
-            <div className="px-2 py-0.5 bg-cyan-900/50 text-cyan-400 text-xs font-mono rounded-md border border-cyan-800/50">
-              Cap. {currentLevel.chapter} · Nível {currentLevel.levelInChapter}
+            <div className="px-3 py-1 bg-[#b71c1c] text-amber-50 text-xs font-serif font-bold tracking-widest uppercase rounded-sm shadow-inner border-2 border-[#8d6e63]">
+              Ato {currentLevel.chapter} · {currentLevel.levelInChapter}
             </div>
-            <span className="text-slate-200 font-bold truncate">{currentLevel.title}</span>
+            <span className="text-[#3e2723] font-bold font-serif text-xl tracking-wide uppercase shadow-sm">{currentLevel.title}</span>
           </div>
-          <button onClick={() => setShowBriefing(false)} className="p-1 hover:bg-slate-800 rounded">
-            <X size={18} className="text-slate-400" />
+          <button onClick={() => setShowBriefing(false)} className="p-1 hover:bg-[#d7b06b] rounded text-[#3e2723] transition-colors">
+            <X size={24} strokeWidth={2.5} />
           </button>
         </div>
 
         {/* Readout link */}
-        <div className="px-4 py-2 bg-blue-950/30 border-b border-blue-900/30 flex items-center gap-2 text-xs">
-          <BookOpen size={12} className="text-blue-400 shrink-0" />
-          <span className="text-slate-400">Referência:</span>
+        <div className="px-6 py-3 bg-[#e6c280]/30 border-b-2 border-[#d7b06b]/50 flex items-center gap-2 text-xs font-mono font-bold tracking-wide">
+          <BookOpen size={14} className="text-[#1b5e20] shrink-0" />
+          <span className="text-[#5d4037]">Referência Sagrada:</span>
           <a
             href={currentLevel.handbookRef.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 hover:underline flex items-center gap-1 truncate"
+            className="text-[#1b5e20] hover:text-[#0f3412] hover:underline flex items-center gap-1 truncate"
           >
             {currentLevel.handbookRef.section}
-            <ExternalLink size={10} className="shrink-0" />
+            <ExternalLink size={12} className="shrink-0" />
           </a>
         </div>
 
         {/* Briefing content */}
-        <div className="flex-1 overflow-y-auto p-5">
-          <div className="prose prose-invert prose-sm prose-cyan max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {currentLevel.mission.briefing}
-            </ReactMarkdown>
-          </div>
+        <div className="flex-1 overflow-y-auto p-6 font-serif text-[#3e2723] leading-relaxed italic text-lg shadow-inner bg-[url('/assets/paper-texture.png')] bg-cover">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {currentLevel.mission.briefing}
+          </ReactMarkdown>
         </div>
 
         {/* Objective chip */}
-        <div className="p-4 border-t border-slate-800 bg-slate-950/30">
+        <div className="p-5 border-t-4 border-[#8d6e63] bg-[#f4ebd8]">
           <div className="flex items-center gap-3 text-sm">
-            <div className="p-1.5 bg-amber-500/10 rounded-lg">
-              <AlertTriangle size={16} className="text-amber-400" />
+            <div className="p-2 bg-[#b71c1c] rounded-full border-2 border-[#8d6e63] shadow-md">
+              <AlertTriangle size={18} className="text-amber-50" />
             </div>
-            <span className="text-slate-300 font-medium">Objetivo:</span>
-            <span className="text-slate-400 flex-1">{currentLevel.mission.objective}</span>
+            <span className="text-[#b71c1c] font-bold font-serif uppercase tracking-widest text-base">Missão:</span>
+            <span className="text-[#5d4037] flex-1 font-serif font-semibold">{currentLevel.mission.objective}</span>
           </div>
           <button
             onClick={() => setShowBriefing(false)}
-            className="mt-3 w-full py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-medium text-sm transition-colors"
+            className="mt-4 w-full py-3 bg-[#795548] hover:bg-[#5d4037] text-amber-50 border-t-2 border-x-2 border-b-4 border-[#3e2723] rounded-sm font-serif font-bold text-sm tracking-widest uppercase transition-all active:border-b-0 active:translate-y-1 shadow-md"
           >
-            Entendido. Iniciar Missão →
+            Empunhar a Picareta →
           </button>
         </div>
       </div>
@@ -318,22 +319,22 @@ export function Game() {
   // ─── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 flex flex-col">
+    <div className="min-h-screen bg-[#fdf6e3] text-[#3e2723] font-sans selection:bg-[#e6c280]/50 flex flex-col">
 
       {/* Briefing Modal */}
       {showBriefing && <BriefingPanel />}
       {showLevelMap && <LevelMapPanel />}
 
       {/* ── Header ─────────────────────────────────────────────────────────── */}
-      <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm py-2 px-4 shrink-0">
+      <header className="border-b-8 border-[#5d4037] bg-[#f4ebd8] py-2 px-4 shrink-0 shadow-md z-10">
         <div className="max-w-screen-2xl mx-auto flex items-center justify-between gap-4">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.3)] bg-slate-800 p-1 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all duration-300 group-hover:scale-110">
-              <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain invert opacity-90 group-hover:opacity-100" />
+          <Link to="/" className="flex items-center gap-3 shrink-0 group">
+            <div className="w-10 h-10 rounded shadow-[inset_0_0_8px_rgba(93,64,55,0.5)] bg-[#e6c280] border-4 border-[#8d6e63] p-1.5 transition-all duration-300 group-hover:scale-105">
+              <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter drop-shadow opacity-90 group-hover:opacity-100" />
             </div>
-            <span className="text-base font-bold tracking-tight text-white hidden sm:block group-hover:text-cyan-400 transition-colors duration-300">
+            <span className="text-xl font-bold font-serif tracking-widest text-[#b71c1c] uppercase hidden sm:block drop-shadow-sm">
               The Miner is Gone
             </span>
           </Link>
@@ -342,32 +343,32 @@ export function Game() {
           <div className="flex items-center gap-2 flex-1 min-w-0 justify-center">
             <button
               onClick={() => setShowLevelMap(true)}
-              className="flex items-center gap-2 text-xs font-mono bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors truncate max-w-xs"
+              className="flex items-center gap-3 font-serif bg-[#fdf6e3] hover:bg-[#e6c280] px-4 py-2 rounded-sm border-2 border-[#8d6e63] border-b-4 transition-all truncate max-w-sm shadow-sm active:border-b-2 active:translate-y-[2px]"
             >
-              <span className="text-cyan-400 font-bold">{currentLevel.chapter}.{currentLevel.levelInChapter}</span>
-              <span className="text-slate-300 truncate">{currentLevel.title}</span>
-              <ChevronDown size={12} className="text-slate-500 shrink-0" />
+              <span className="text-[#b71c1c] font-bold">Ato {currentLevel.chapter}.{currentLevel.levelInChapter}</span>
+              <span className="text-[#5d4037] font-semibold truncate">{currentLevel.title}</span>
+              <ChevronDown size={16} className="text-[#8d6e63] shrink-0" strokeWidth={3} />
             </button>
           </div>
 
           {/* Right Controls */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-3 shrink-0">
             {/* Battery */}
-            <div className="hidden md:flex items-center gap-1.5 text-xs text-slate-400">
-              <Battery size={14} />
-              <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div className="hidden md:flex items-center gap-2 font-bold font-serif text-[#b71c1c] bg-[#fdf6e3] border-2 border-[#8d6e63] px-2 py-1 rounded-sm shadow-inner">
+              <Battery size={16} />
+              <div className="w-16 h-2.5 bg-[#5d4037] rounded-sm overflow-hidden shadow-inner flex border border-[#3e2723]">
                 <div
-                  className={clsx('h-full rounded-full transition-all', batteryColor)}
+                  className={clsx('h-full transition-all', batteryColor)}
                   style={{ width: `${batteryPct}%` }}
                 />
               </div>
-              <span className="font-mono text-[10px] w-6">{batteryPct}%</span>
+              <span className="text-xs w-8 text-right drop-shadow-sm">{batteryPct}%</span>
             </div>
 
             {/* Ticks */}
-            <div className="hidden md:flex items-center gap-1 text-xs text-slate-400 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">
-              <Cpu size={12} className="text-purple-400" />
-              {gameState.ticksUsed}t
+            <div className="hidden md:flex items-center gap-2 font-bold font-serif text-[#1b5e20] bg-[#fdf6e3] border-2 border-[#8d6e63] px-3 py-1 rounded-sm shadow-inner">
+              <Cpu size={16} className="text-[#1b5e20]" />
+              <span className="drop-shadow-sm text-sm">{gameState.ticksUsed}t</span>
             </div>
 
             {/* Handbook */}
@@ -375,45 +376,44 @@ export function Game() {
               href={currentLevel.handbookRef.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs text-blue-400 font-mono bg-blue-950/30 px-3 py-1.5 rounded-lg border border-blue-900/30 hover:bg-blue-950/50 transition-colors"
+              className="flex items-center gap-2 text-sm text-[#1b5e20] font-serif font-bold bg-[#1b5e20]/10 px-3 py-2 rounded-sm border-2 border-[#1b5e20]/30 hover:bg-[#1b5e20]/20 hover:border-[#1b5e20] transition-colors shadow-sm"
               title="Abrir TypeScript Handbook"
             >
-              <BookOpen size={13} />
-              <span className="hidden lg:inline">Handbook</span>
-              <ExternalLink size={10} />
+              <BookOpen size={16} />
+              <span className="hidden lg:inline uppercase tracking-widest">Ritual</span>
+              <ExternalLink size={12} strokeWidth={3} />
             </a>
 
             {/* Briefing */}
             <button
               onClick={() => setShowBriefing(true)}
-              className="flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 transition-colors"
+              className="flex items-center gap-2 text-sm font-serif font-bold text-amber-50 bg-[#795548] hover:bg-[#5d4037] px-3 py-2 rounded-sm border-t-2 border-x-2 border-b-4 border-[#3e2723] transition-all active:border-b-2 active:translate-y-[2px]"
             >
-              <Info size={13} />
-              <span className="hidden lg:inline">Briefing</span>
+              <Info size={16} />
+              <span className="hidden lg:inline uppercase tracking-widest">Briefing</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* ── Main Grid ──────────────────────────────────────────────────────── */}
-      <main className="flex-1 grid lg:grid-cols-2 gap-0 overflow-hidden min-h-0">
+      <main className="flex-1 grid lg:grid-cols-2 gap-0 overflow-hidden min-h-0 bg-[#e6c280]">
 
         {/* ── Left: Game View ─────────────────────────────────────────────── */}
         <div
           id="game-view"
-          className="relative flex flex-col items-center justify-center bg-slate-950 border-r border-slate-800 p-4 overflow-hidden"
+          className="relative flex flex-col items-center justify-center bg-[#2d1b14] border-r-8 border-[#5d4037] p-6 overflow-hidden shadow-[inset_0_0_50px_rgba(0,0,0,0.5)]"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.06)_0%,transparent_65%)] pointer-events-none" />
 
           <GameGrid grid={gameState.grid} drone={gameState.drone} />
 
           {/* HUD Overlay */}
-          <div className="absolute top-3 left-3 flex items-center gap-2">
-            <div className="text-[10px] font-mono bg-slate-900/80 px-2 py-1 rounded border border-slate-700 text-slate-400">
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-3">
+            <div className="text-sm font-serif font-bold bg-[#fdf6e3] px-3 py-1.5 rounded-sm border-2 border-[#8d6e63] text-[#5d4037] shadow-sm">
               [{gameState.drone.x}, {gameState.drone.y}]
             </div>
             {gameState.drone.cargo.length > 0 && (
-              <div className="text-[10px] font-mono bg-slate-900/80 px-2 py-1 rounded border border-slate-700 text-emerald-400">
+              <div className="text-sm font-serif font-bold bg-[#1b5e20] px-3 py-1.5 rounded-sm border-2 border-[#144d18] text-amber-50 shadow-sm">
                 ⛏️ {gameState.drone.cargo.map(c => `${c.quantity}×${c.type}`).join(', ')}
               </div>
             )}
@@ -421,30 +421,37 @@ export function Game() {
 
           {/* ── Success Overlay ──────────────────────────────────────────── */}
           {isSuccess && (
-            <div className="absolute inset-0 bg-slate-950/85 flex items-center justify-center backdrop-blur-sm animate-in fade-in duration-500">
-              <div className="text-center p-8 bg-slate-900 border border-emerald-500/40 rounded-2xl shadow-[0_0_60px_rgba(16,185,129,0.15)] max-w-sm mx-4">
-                <div className="text-5xl mb-3">{medalCfg.icon || '✅'}</div>
-                <CheckCircle size={48} className="text-emerald-500 mx-auto mb-3" />
-                <h2 className="text-2xl font-bold text-white mb-1">Missão Cumprida!</h2>
+            <div className="absolute inset-0 bg-[#fdf6e3]/90 flex items-center justify-center backdrop-blur-sm animate-in fade-in duration-500 z-50 p-4">
+              <div className="text-center p-10 bg-[#f4ebd8] border-8 border-[#5d4037] shadow-[12px_12px_0_rgba(62,39,35,0.3)] max-w-sm w-full mx-4 relative overflow-hidden rounded-sm">
+                
+                {/* Decorative corners */}
+                <div className="absolute top-2 left-2 text-[#b71c1c]/40 font-serif text-3xl font-bold">⚜</div>
+                <div className="absolute top-2 right-2 text-[#b71c1c]/40 font-serif text-3xl font-bold">⚜</div>
+
+                <div className="text-7xl mb-6 relative z-10 drop-shadow-md">
+                  {medalCfg.icon || '✅'}
+                </div>
+                <h2 className="text-3xl font-bold font-serif text-[#1b5e20] mb-2 uppercase tracking-widest">[ RITUAL COMPLETO ]</h2>
                 {medal !== 'none' && (
-                  <p className={clsx('text-lg font-bold mb-2', medalCfg.color)}>
-                    <Trophy size={16} className="inline mr-1" />
-                    Medalha {medalCfg.label} conquistada
+                  <p className={clsx('text-base font-bold font-serif mb-6 uppercase tracking-widest px-4 py-2 inline-flex items-center justify-center shadow-inner border-4 border-[#8d6e63] bg-[#fdf6e3]', medalCfg.color)}>
+                    <Trophy size={18} className="mr-2 -translate-y-[1px]" strokeWidth={2.5} />
+                    CHANCELA: {medalCfg.label}
                   </p>
                 )}
-                <p className="text-slate-400 text-sm mb-5">{currentLevel.mission.objective}</p>
-                <div className="flex gap-2 justify-center">
+                <p className="text-[#5d4037] text-base mb-8 font-serif italic leading-relaxed font-semibold">{currentLevel.mission.objective}</p>
+                
+                <div className="flex gap-4 justify-center">
                   <button
                     onClick={actions.reset}
-                    className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm font-medium transition-colors"
+                    className="px-4 py-3 bg-[#e6c280] hover:bg-[#d7b06b] text-[#3e2723] border-t-2 border-x-2 border-b-4 border-[#8d6e63] font-serif font-bold uppercase tracking-widest rounded-sm transition-all active:border-b-2 active:translate-y-[2px]"
                   >
-                    Reiniciar
+                    [ REAJUSTAR ]
                   </button>
                   <button
                     onClick={actions.nextLevel}
-                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-1"
+                    className="px-6 py-3 bg-[#795548] hover:bg-[#5d4037] border-t-2 border-x-2 border-b-4 border-[#3e2723] text-amber-50 font-serif font-bold transition-all flex items-center justify-center gap-2 uppercase tracking-widest rounded-sm active:border-b-2 active:translate-y-[2px]"
                   >
-                    Próxima Missão <ChevronRight size={14} />
+                    PRÓXIMO CAPÍTULO <ChevronRight size={18} className="shrink-0" strokeWidth={3} />
                   </button>
                 </div>
               </div>
@@ -453,22 +460,32 @@ export function Game() {
 
           {/* ── Failure Overlay ──────────────────────────────────────────── */}
           {isFailed && (
-            <div className="absolute inset-0 bg-slate-950/85 flex items-center justify-center backdrop-blur-sm animate-in fade-in duration-500">
-              <div className="text-center p-8 bg-slate-900 border border-red-500/40 rounded-2xl shadow-[0_0_60px_rgba(239,68,68,0.15)] max-w-sm mx-4">
-                <XCircle size={48} className="text-red-500 mx-auto mb-3" />
-                <h2 className="text-2xl font-bold text-white mb-2">Sistema Falhou</h2>
-                <p className="text-slate-400 text-sm mb-3 max-w-xs mx-auto">
-                  {[...gameState.logs].reverse().find(l => l.type === 'error')?.message ?? 'Erro desconhecido.'}
-                </p>
-                <p className="text-xs text-slate-600 mb-5">
-                  Verifique o terminal para detalhes.
-                </p>
+            <div className="absolute inset-0 bg-[#4a0000]/80 flex items-center justify-center backdrop-blur-sm animate-in fade-in duration-500 z-50 p-4">
+              <div className="text-center p-10 bg-[#fdf6e3] border-8 border-[#b71c1c] shadow-[12px_12px_0_rgba(62,39,35,0.7)] max-w-sm w-full mx-4 relative overflow-hidden rounded-sm">
+                
+                {/* Decorative corners */}
+                <div className="absolute top-2 left-2 text-[#b71c1c]/40 font-serif text-3xl font-bold">⚜</div>
+                <div className="absolute top-2 right-2 text-[#b71c1c]/40 font-serif text-3xl font-bold">⚜</div>
+
+                <div className="bg-[#b71c1c] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner border-4 border-[#5d4037]">
+                   <AlertTriangle size={32} className="text-amber-50" strokeWidth={3} />
+                </div>
+                
+                <h2 className="text-2xl font-bold font-serif text-[#b71c1c] mb-4 uppercase tracking-widest">
+                  FALHA NA MAGIA
+                </h2>
+                
+                <div className="text-[#3e2723] text-sm mb-8 font-mono font-bold leading-relaxed bg-[#f4ebd8] p-4 border-2 border-[#b71c1c] text-left overflow-auto max-h-32 shadow-inner">
+                  <div className="text-[#b71c1c] mb-2 uppercase tracking-widest text-[10px]">&gt; Erro Sintático:</div>
+                  {[...gameState.logs].reverse().find(l => l.type === 'error')?.message ?? 'O feitiço falhou de forma desconhecida.'}
+                </div>
+                
                 <button
                   onClick={actions.reset}
-                  className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors flex items-center gap-2 mx-auto"
+                  className="px-6 py-3 bg-[#b71c1c] hover:bg-[#900000] border-t-2 border-x-2 border-b-4 border-[#5d4037] text-amber-50 font-serif font-bold transition-all flex items-center justify-center gap-3 mx-auto uppercase tracking-widest w-full rounded-sm active:border-b-2 active:translate-y-[2px]"
                 >
-                  <RotateCcw size={16} />
-                  Tentar Novamente
+                  <RotateCcw size={16} strokeWidth={3} />
+                  [ REPREPARAR RUNAS ]
                 </button>
               </div>
             </div>
@@ -476,60 +493,63 @@ export function Game() {
         </div>
 
         {/* ── Right: IDE Panel ─────────────────────────────────────────────── */}
-        <div className="flex flex-col min-h-0 bg-[#1e1e1e]">
+        <div className="flex flex-col min-h-0 bg-[#e6c280] shadow-[inset_10px_0_20px_rgba(93,64,55,0.2)]">
 
           {/* Mission Bar */}
-          <div className="bg-[#252526] border-b border-black/30 px-4 py-2 shrink-0 flex items-center gap-3">
-            <div className="flex items-center gap-2 text-amber-400 flex-1 min-w-0">
-              <AlertTriangle size={14} />
-              <span className="text-xs font-medium truncate">{currentLevel.mission.objective}</span>
+          <div className="bg-[#fdf6e3] border-b-2 border-[#8d6e63] px-4 py-3 shrink-0 flex items-center gap-3">
+            <div className="flex items-center gap-3 text-[#b71c1c] flex-1 min-w-0 font-serif">
+              <AlertTriangle size={18} />
+              <span className="text-sm font-bold truncate tracking-wide">{currentLevel.mission.objective}</span>
             </div>
             <a
               href={currentLevel.handbookRef.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-[10px] text-blue-400 hover:text-blue-300 transition-colors shrink-0"
+              className="flex items-center gap-1.5 text-xs text-[#1b5e20] hover:text-[#0f3412] transition-colors shrink-0 font-bold tracking-widest uppercase bg-[#1b5e20]/10 px-2 py-1 rounded-sm border border-[#1b5e20]/20"
             >
-              <BookOpen size={10} />
+              <BookOpen size={12} />
               <span className="hidden sm:inline">{currentLevel.handbookRef.section}</span>
-              <ExternalLink size={9} />
+              <ExternalLink size={10} strokeWidth={3} />
             </a>
           </div>
 
           {/* Editor Tab */}
-          <div className="bg-[#2d2d2d] border-b border-black/20 px-4 py-1.5 shrink-0 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-slate-400 text-xs font-mono">
-              <span className="text-blue-400">◆</span>
-              drone-controller.ts
-              <span className="text-slate-600">|</span>
-              <span className="text-slate-500">Cap. {currentLevel.chapter}.{currentLevel.levelInChapter}</span>
+          <div className="bg-[#f4ebd8] border-b-4 border-[#8d6e63] px-3 py-2 shrink-0 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-[#5d4037] text-xs font-mono font-bold uppercase tracking-widest">
+              <span className="text-[#b71c1c]">◆</span>
+              pergaminho_magico.ts
+              <span className="text-[#8d6e63] px-2">|</span>
+              <span className="text-[#8d6e63]">Ato {currentLevel.chapter}.{currentLevel.levelInChapter}</span>
             </div>
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
-              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/40" />
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/40" />
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#b71c1c] border border-[#5d4037]" />
+              <div className="w-3 h-3 rounded-full bg-[#e6c280] border border-[#5d4037]" />
+              <div className="w-3 h-3 rounded-full bg-[#1b5e20] border border-[#5d4037]" />
             </div>
           </div>
 
           {/* Monaco Editor */}
-          <div className="flex-1 min-h-0">
+          <div className="flex-1 min-h-0 bg-[#fdf6e3]">
             <Editor
               height="100%"
               defaultLanguage="typescript"
-              theme="vs-dark"
+              theme="vs"
               value={code}
-              onChange={val => setCode(val ?? '')}
+              onChange={val => {
+                const newCode = val ?? '';
+                setCode(newCode);
+                localStorage.setItem(`${STORAGE_KEY}_${currentLevel.id}`, newCode);
+              }}
               onMount={handleEditorDidMount}
               options={{
                 minimap: { enabled: false },
-                fontSize: 13,
+                fontSize: 14,
                 fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
                 fontLigatures: true,
                 scrollBeyondLastLine: false,
                 lineNumbers: 'on',
                 renderLineHighlight: 'line',
-                padding: { top: 12, bottom: 12 },
-                bracketPairColorization: { enabled: true },
+                padding: { top: 16, bottom: 16 },
                 smoothScrolling: true,
                 cursorSmoothCaretAnimation: 'on',
                 formatOnPaste: true,
@@ -540,62 +560,61 @@ export function Game() {
           {/* Resize Handle */}
           <div
             onMouseDown={startResizing}
-            className="h-4 bg-[#252526] hover:bg-slate-700/50 cursor-row-resize flex items-center justify-center border-t border-black/20 transition-colors shrink-0 group"
+            className="h-5 bg-[#d7b06b] hover:bg-[#8d6e63] cursor-row-resize flex items-center justify-center border-y-2 border-[#8d6e63] transition-colors shrink-0 group"
           >
-            <GripHorizontal size={14} className="text-slate-700 group-hover:text-slate-500 transition-colors" />
+            <GripHorizontal size={18} className="text-[#5d4037] group-hover:text-[#fdf6e3] transition-colors" />
           </div>
 
           {/* Terminal */}
           <div
             id="terminal-view"
-            className="bg-slate-950 flex flex-col shrink-0 border-t border-black/20 transition-all duration-200"
-            style={{ height: isTerminalCollapsed ? 36 : terminalHeight }}
+            className="bg-[#2d1b14] flex flex-col shrink-0 border-t-8 border-[#5d4037] transition-all duration-200"
+            style={{ height: isTerminalCollapsed ? 42 : terminalHeight }}
           >
             {/* Terminal Header */}
             <div
-              className="flex items-center justify-between px-4 py-1.5 border-b border-slate-800/50 bg-[#252526] cursor-pointer hover:bg-[#2a2a2b] transition-colors shrink-0"
+              className="flex items-center justify-between px-5 py-2.5 border-b-2 border-[#1a0f0b] bg-[#3e2723] cursor-pointer hover:bg-[#4e342e] transition-colors shrink-0"
               onClick={toggleTerminal}
             >
-              <div className="flex items-center gap-2 text-slate-400 text-[11px] font-mono uppercase tracking-wide">
-                <Terminal size={11} />
-                Terminal Output
+              <div className="flex items-center gap-3 text-amber-100/90 text-[11px] font-mono font-bold uppercase tracking-widest">
+                <Terminal size={14} />
+                Logs da Guilda
                 {gameState.logs.length > 0 && (
-                  <span className="bg-slate-700 text-slate-400 rounded px-1 text-[9px]">
+                  <span className="bg-[#b71c1c] text-amber-50 rounded-full px-2 py-0.5 text-[10px] shadow-inner font-sans border border-[#5d4037]">
                     {gameState.logs.length}
                   </span>
                 )}
               </div>
               <div className="flex items-center gap-2">
                 {isTerminalCollapsed
-                  ? <ChevronUp size={13} className="text-slate-500" />
-                  : <ChevronDown size={13} className="text-slate-500" />
+                  ? <ChevronUp size={16} className="text-amber-100/50" />
+                  : <ChevronDown size={16} className="text-amber-100/50" />
                 }
               </div>
             </div>
 
             {/* Terminal Body */}
             {!isTerminalCollapsed && (
-              <div className="flex-1 p-3 overflow-y-auto font-mono text-xs space-y-1 min-h-0">
+              <div className="flex-1 p-4 overflow-y-auto font-mono text-sm space-y-2 min-h-0 text-[#d7b06b]">
                 {gameState.logs.length === 0 && (
-                  <span className="text-slate-700 italic">Pronto. Aguardando execução... (Ctrl+Enter para rodar)</span>
+                  <span className="italic opacity-50">Silêncio na mina... (Ctrl+Enter para comandar)</span>
                 )}
                 {gameState.logs.map(log => (
                   <div
                     key={log.id}
                     className={clsx(
-                      'flex items-start gap-2 group leading-relaxed',
-                      log.type === 'error' && 'text-red-400',
-                      log.type === 'success' && 'text-emerald-400',
-                      log.type === 'warning' && 'text-amber-400',
-                      log.type === 'system' && 'text-slate-500',
-                      log.type === 'info' && 'text-slate-300',
+                      'flex items-start gap-3 group leading-relaxed border-l-2 pl-3 py-0.5 transition-colors',
+                      log.type === 'error' && 'text-[#ff5252] border-[#ff5252] bg-[#ff5252]/5',
+                      log.type === 'success' && 'text-[#69f0ae] border-[#69f0ae] bg-[#69f0ae]/5',
+                      log.type === 'warning' && 'text-[#ffd740] border-[#ffd740] bg-[#ffd740]/5',
+                      log.type === 'system' && 'text-[#d7b06b]/50 border-transparent',
+                      log.type === 'info' && 'text-[#d7b06b] border-[#5d4037]',
                     )}
                   >
-                    <span className="text-slate-700 shrink-0 opacity-50 group-hover:opacity-100 transition-opacity font-mono text-[9px] mt-0.5 tabular-nums">
-                      {new Date(log.timestamp).toLocaleTimeString([], { hour12: false })}
+                    <span className="shrink-0 opacity-40 font-bold tabular-nums">
+                      [{new Date(log.timestamp).toLocaleTimeString([], { hour12: false })}]
                     </span>
-                    <span className="opacity-30 select-none text-slate-500">›</span>
-                    <span className="break-all">{log.message}</span>
+                    <span className="break-all font-medium">{log.message}</span>
                   </div>
                 ))}
               </div>
@@ -605,40 +624,40 @@ export function Game() {
           {/* Action Bar */}
           <div
             id="action-bar"
-            className="p-3 bg-[#252526] border-t border-black/20 flex items-center justify-between gap-2 shrink-0"
+            className="p-4 bg-[#fdf6e3] border-t-4 border-[#8d6e63] flex items-center justify-between gap-3 shrink-0 shadow-[0_-2px_10px_rgba(62,39,35,0.05)]"
           >
             {/* Left: terminal toggle */}
             <button
               onClick={toggleTerminal}
-              className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors px-2 py-1.5 rounded hover:bg-slate-800"
+              className="flex items-center gap-2 font-serif font-bold text-sm tracking-widest uppercase text-[#5d4037] hover:bg-[#e6c280] px-3 py-2 rounded-sm transition-colors border-2 border-transparent hover:border-[#8d6e63]"
             >
-              <Terminal size={14} />
-              <span className="hidden sm:inline">Terminal</span>
+              <Terminal size={18} />
+              <span className="hidden sm:inline">Logs</span>
             </button>
 
             {/* Right: Reset + Run */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <button
                 onClick={actions.reset}
                 disabled={isRunning}
-                className="px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-1.5 text-sm disabled:opacity-40"
+                className="px-4 py-2.5 text-[#b71c1c] font-serif font-bold uppercase tracking-widest text-sm hover:bg-[#b71c1c]/10 rounded-sm transition-colors flex items-center gap-2 shadow-sm border-2 border-[#b71c1c]/20 hover:border-[#b71c1c] disabled:opacity-40"
               >
-                <RotateCcw size={14} />
-                <span className="hidden sm:inline">Reset</span>
+                <RotateCcw size={16} strokeWidth={2.5} />
+                <span className="hidden sm:inline">Descartar</span>
               </button>
 
               <button
                 onClick={handleRun}
                 disabled={isRunning}
                 className={clsx(
-                  'px-5 py-2 rounded-lg text-white font-semibold flex items-center gap-2 text-sm shadow-lg transition-all',
+                  'px-8 py-3 rounded-sm font-serif font-bold tracking-widest uppercase flex items-center gap-2 text-sm transition-all',
                   isRunning
-                    ? 'bg-slate-700 cursor-not-allowed opacity-60'
-                    : 'bg-cyan-600 hover:bg-cyan-500 hover:shadow-cyan-500/20 active:scale-[0.97]'
+                    ? 'bg-[#8d6e63] text-[#f4ebd8] cursor-not-allowed opacity-80 border-2 border-[#5d4037]'
+                    : 'bg-[#1b5e20] text-amber-50 border-t-2 border-x-2 border-b-4 border-[#0f3412] hover:bg-[#2e7d32] active:border-b-2 active:translate-y-[2px] shadow-md'
                 )}
               >
-                <Play size={14} fill="currentColor" />
-                {isRunning ? 'Executando...' : 'Deploy'}
+                <Play size={18} fill="currentColor" strokeWidth={0} />
+                {isRunning ? 'Lançando Magia...' : 'Empunhar Picareta'}
               </button>
             </div>
           </div>

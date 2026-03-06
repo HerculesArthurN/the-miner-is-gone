@@ -47,13 +47,13 @@ O projeto atingiu maturidade técnica significativa:
 
 ---
 
-### 🟢 FASE 6 — UI/UX, Landing Page e Polimento
+### ✅ FASE 6 — UI/UX, Landing Page e Polimento (CONCLUÍDA)
 **Tornar o jogo um produto final de alto impacto.**
 
-- [ ] Finalizar `LandingPage.tsx` e integrá-lo com `react-router-dom`.
-- [ ] Criar tela de "Game Over" temática e "Victory Screen" com medalhas históricas.
-- [ ] Implementar persistência de progresso no `localStorage`.
-- [ ] Melhorar visual do Ground/Walls com texturas ou SVG dinâmico.
+- [X] Finalizar `LandingPage.tsx` e integrá-lo com `react-router-dom` (Estética Rúnica / Scriptorium).
+- [X] Criar tela de "Game Over" temática e "Victory Screen" com medalhas históricas (Estética da Forja).
+- [X] Implementar persistência de progresso no `localStorage`.
+- [X] Melhorar visual do Ground/Walls com texturas ou SVG dinâmico (Assets 16-bits Pixel Art injetados).
 - [ ] README atualizado com instruções de contribuição.
 
 ---

@@ -1,17 +1,17 @@
-# 🤖 The Miner is Gone — Chapter 1 & 2
+# 🏰 The Miner is Gone — A Forja Rúnica
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-> **"O engenheiro-chefe sumiu. Só resta a documentação. Salve a operação mineradora usando o poder da tipagem estática."**
+> **"O Mestre Forjador sumiu. Só resta o antigo Grimório. Salve a forja operando Golens ancestrais com a magia da tipagem estrita."**
 
-**The Miner is Gone** é um jogo educativo de automação onde você programa drones mineradores usando **TypeScript**. Mais do que um simples tutorial, o jogo é uma transposição interativa do **TypeScript Handbook Oficial**.
+**The Miner is Gone** é um jogo educativo com estética Medieval Clássica e Brilhante (RPGs 16-bits), onde você escreve "Magia Rúnica" (**TypeScript**) para controlar Golens mineradores. Mais do que um simples tutorial, o jogo é uma transposição interativa do **TypeScript Handbook Oficial**.
 
 ---
 
-## 💎 A Filosofia: "Read the Docs"
+## 💎 A Filosofia: "Ler os Antigos Pergaminhos"
 
 Diferente de cursos tradicionais, aqui a documentação é sua melhor amiga. Cada nível é mapeado diretamente para uma seção específica do Handbook.
 
@@ -25,16 +25,16 @@ Ao completar o jogo, você terá percorrido integralmente os capítulos fundamen
 
 ## 🛠️ Mecânicas de Jogo
 
-### ⌨️ IntelliSense Progressivo
-O editor (Monaco) é configurado para injetar tipos dinamicamente. No Capítulo 1, você tem acesso apenas ao básico. Conforme avança no Handbook, novas APIs e tipos complexos são desbloqueados no seu IntelliSense.
+### ⌨️ Magia Progressiva (IntelliSense)
+O editor (Scriptorium/Monaco) é configurado para injetar tipos dinamicamente. No Ato I, você tem acesso apenas aos feitiços básicos. Conforme avança no Handbook, novas APIs e magias complexas são desbloqueadas no seu IntelliSense.
 
-### 🔋 Gestão de Recursos (Ticks & Bateria)
-Cada comando (`move`, `mine`, `scan`) consome bateria e tempo (ticks). O objetivo não é apenas resolver o problema, mas criar algoritmos eficientes. Códigos com complexidade desnecessária (O(n²)) causam superaquecimento no drone!
+### 🔋 Gestão de Energia (Ticks & Estamina)
+Cada instrução (`move`, `mine`, `scan`) consome a estamina e o ritmo (ticks) do Golem. O objetivo não é apenas resolver o problema, mas tecer encantamentos eficientes. Códigos com complexidade desnecessária (O(n²)) superaquecem as runas do constructo!
 
-### 🥇 Sistema de Ranking
+### 🥇 Chancelas de Mestre (Medalhas)
 - 🥉 **Bronze**: Missão concluída.
-- 🥈 **Prata**: Missão concluída + **Zero `any`** (Código estritamente tipado).
-- 🥇 **Ouro**: Prata + Eficiência algorítmica (limite de ticks/bateria).
+- 🥈 **Prata**: Magia pura — Código estritamente tipado, com **Zero `any`**.
+- 🥇 **Ouro**: Magia lendária — Prata + Eficiência rítmica (limite rigoroso de ticks/bateria).
 
 ---
 
@@ -65,26 +65,28 @@ cd the-miner-is-gone
 npm install
 ```
 
-3. Configure o ambiente:
-Crie um arquivo `.env.local` na raiz e adicione sua chave do Gemini (necessária para algumas funcionalidades de IA de apoio):
-```env
-GEMINI_API_KEY=sua_chave_aqui
-```
+3. Configure o ambiente (opcional):
+Crie um arquivo `.env.local` na raiz caso no futuro necessite alguma variável específica de backend. Por ora, o jogo é **Local-First** e roda inteiramente no navegador do aprendiz.
 
-4. Inicie o servidor de desenvolvimento:
+4. Acenda as tochas da forja:
 ```bash
 npm run dev
 ```
 
 ---
 
-## 🗺️ Mapa de Progresso (Atualmente em Desenvolvimento)
+## 🗺️ Os Atos do Grimório (Conteúdo Completo 1.0)
 
-- [x] **Capítulo 1: The Basics** (Fundamentos, Static Checking, Strictness)
-- [x] **Capítulo 2: Everyday Types** (Primitives, Unions, Aliases, Interfaces)
-- [ ] **Capítulo 3: Narrowing** (Type Guards, Discriminated Unions)
-- [ ] **Capítulo 4: More on Functions**
-- [ ] ... e mais 4 capítulos planejados.
+- [x] **Ato 1: Primeiros Rituais** (The Basics, Types, Strictness) - 4 níveis
+- [x] **Ato 2: Feitiços Básicos** (Everyday Types, Unions, Interfaces) - 10 níveis
+- [x] **Ato 3: A Arte do Foco** (Narrowing, Type Guards, Discriminations) - 6 níveis
+- [x] **Ato 4: Comandos Complexos** (More on Functions, Overloads, Generics) - 4 níveis
+- [x] **Ato 5: Tipos de Matéria** (Object Types, Modifiers, Tuples) - 5 níveis
+- [x] **Ato 6: Magia Universal** (Generics Constraints e Variáveis) - 6 níveis
+- [x] **Ato 7: Estruturas da Guilda** (Classes, Inheritance, Abstract) - 5 níveis
+- [x] **Ato 8: Cânticos Superiores** (Type Manipulation, Mapped/Conditional Types) - 6 níveis
+
+Todos os capítulos implementados com validação por Transpiler real no browser!
 
 ---
 

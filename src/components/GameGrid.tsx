@@ -2,14 +2,15 @@ import React from 'react';
 import { Cell, DroneState, CellType } from '../types/game';
 import { clsx } from 'clsx';
 import { motion, AnimatePresence } from 'motion/react';
-import { Pickaxe, Gem, Flame, Box, Lock, HelpCircle, Zap } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 
 // ─── Cell Visual Config ───────────────────────────────────────────────────────
 
 interface CellStyle {
   bg: string;
   border: string;
-  icon: React.ReactNode;
+  image?: string;
+  icon?: React.ReactNode;
   label: string;
   glow?: string;
 }
@@ -18,71 +19,69 @@ function getCellStyle(cell: Cell): CellStyle {
   switch (cell.type) {
     case 'iron':
       return {
-        bg: 'bg-slate-700',
-        border: 'border-slate-500',
-        icon: <Box size={24} className="text-slate-300" strokeWidth={1.5} />,
+        bg: 'bg-transparent',
+        border: 'border-transparent',
+        image: '/assets/iron_ore.png',
         label: 'Ferro',
-        glow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]',
       };
     case 'gold':
       return {
-        bg: 'bg-yellow-900/50',
-        border: 'border-yellow-600/50',
-        icon: <Box size={24} className="text-yellow-400" strokeWidth={1.5} />,
+        bg: 'bg-transparent',
+        border: 'border-transparent',
+        image: '/assets/gold_ore.png',
         label: 'Ouro',
-        glow: 'shadow-[0_0_12px_rgba(234,179,8,0.3)]',
+        glow: 'drop-shadow-[0_0_5px_rgba(234,179,8,0.5)]',
       };
     case 'crystal':
       return {
-        bg: 'bg-blue-900/40',
-        border: 'border-blue-500/50',
-        icon: <Gem size={22} className="text-blue-300" strokeWidth={1.5} />,
+        bg: 'bg-transparent',
+        border: 'border-transparent',
+        image: '/assets/mana_crystal.png',
         label: 'Cristal',
-        glow: 'shadow-[0_0_12px_rgba(96,165,250,0.4)]',
+        glow: 'drop-shadow-[0_0_8px_rgba(0,242,255,0.6)]',
       };
     case 'isotope':
       return {
-        bg: 'bg-purple-900/40',
-        border: 'border-purple-500/50',
-        icon: <Zap size={22} className="text-purple-300" strokeWidth={1.5} />,
+        bg: 'bg-transparent',
+        border: 'border-transparent',
+        image: '/assets/dark_isotope.png',
         label: 'Isótopo',
-        glow: 'shadow-[0_0_12px_rgba(168,85,247,0.4)]',
+        glow: 'drop-shadow-[0_0_10px_rgba(168,85,247,0.7)]',
       };
     case 'wall':
       return {
-        bg: 'bg-slate-900',
-        border: 'border-slate-700',
-        icon: <Lock size={18} className="text-slate-600" strokeWidth={1.5} />,
+        bg: 'bg-transparent',
+        border: 'border-transparent',
+        image: '/assets/ancient_wall.png',
         label: 'Parede',
       };
     case 'hazard':
       return {
-        bg: 'bg-red-950/60',
-        border: 'border-red-700/60',
-        icon: <Flame size={22} className="text-red-400" strokeWidth={1.5} />,
+        bg: 'bg-transparent',
+        border: 'border-transparent',
+        image: '/assets/lava.png',
         label: 'Perigo',
-        glow: 'shadow-[0_0_10px_rgba(239,68,68,0.3)]',
+        glow: 'drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]',
       };
     case 'fog':
       return {
-        bg: 'bg-slate-800/60',
-        border: 'border-slate-700/40',
-        icon: <HelpCircle size={18} className="text-slate-600" strokeWidth={1.5} />,
+        bg: 'bg-[#3e2723]',
+        border: 'border-[#2d1b14]',
+        icon: <HelpCircle size={20} className="text-[#8d6e63]" strokeWidth={2.5} />,
         label: '???',
       };
     case 'portal':
       return {
-        bg: 'bg-cyan-900/30',
-        border: 'border-cyan-500/40',
-        icon: <Zap size={22} className="text-cyan-400" strokeWidth={1.5} />,
+        bg: 'bg-transparent',
+        border: 'border-transparent',
+        image: '/assets/portal.png',
         label: 'Portal',
-        glow: 'shadow-[0_0_14px_rgba(6,182,212,0.4)]',
+        glow: 'drop-shadow-[0_0_12px_rgba(168,85,247,0.8)]', /* Using purple/magenta for portal */
       };
     default: // empty
       return {
-        bg: 'bg-slate-800/30',
-        border: 'border-slate-700/30',
-        icon: null,
+        bg: 'bg-[#5d4037]/50',
+        border: 'border-[#4e342e]/50',
         label: '',
       };
   }
@@ -144,17 +143,16 @@ export const GameGrid: React.FC<GameGridProps> = ({ grid, drone }) => {
                 aria-label={`[${x},${y}] ${cell.type}`}
                 className={clsx(
                   cellSizeClass,
-                  'rounded-lg flex items-center justify-center relative transition-all duration-300',
-                  'border',
+                  'flex items-center justify-center relative transition-all duration-300 rounded-[4px]',
+                  'border-2 shadow-sm',
                   style.bg,
                   style.border,
-                  style.glow,
-                  isDroneHere && 'ring-1 ring-cyan-400/50',
-                  isFog && 'opacity-60',
+                  isDroneHere && 'border-transparent', // Handled by drone outline
+                  isFog && 'opacity-90',
                 )}
               >
                 {/* Coordinates (small) */}
-                <span className="absolute top-0.5 left-1 text-[8px] text-slate-600 font-mono leading-none select-none opacity-60">
+                <span className="absolute top-1 left-1.5 text-[10px] text-[#e6c280] font-mono leading-none select-none opacity-40 font-bold">
                   {x},{y}
                 </span>
 
@@ -166,14 +164,11 @@ export const GameGrid: React.FC<GameGridProps> = ({ grid, drone }) => {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0.5, opacity: 0 }}
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      className="flex flex-col items-center gap-0.5"
+                      className={clsx("flex flex-col flex-1 items-center justify-center w-full h-full p-2", style.glow)}
                     >
-                      {style.icon}
-                      {style.label && (
-                        <span className="text-[8px] font-mono font-medium text-slate-400 leading-none">
-                          {style.label}
-                        </span>
-                      )}
+                      {style.image ? (
+                         <img src={style.image} alt={style.label} className="w-full h-full object-contain filter drop-shadow hover:scale-110 transition-transform" style={{ imageRendering: 'pixelated' }} />
+                      ) : style.icon}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -188,20 +183,15 @@ export const GameGrid: React.FC<GameGridProps> = ({ grid, drone }) => {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0.6, opacity: 0 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                      className="absolute z-10"
+                      className="absolute z-10 w-full h-full flex items-center justify-center -translate-y-1"
                     >
-                      {/* Pulse ring */}
+                      {/* Pulse ring replacing original ring */}
                       <motion.div
-                        className="absolute -inset-2 rounded-full bg-cyan-500/20"
-                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                        className="absolute inset-[0px] rounded-sm border-4 border-[#1b5e20]/40 z-0 bg-[#e6c280]/20"
+                        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
                         transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
                       />
-                      <div className="relative text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">
-                        <Pickaxe
-                          size={cols <= 5 ? 32 : cols <= 7 ? 24 : 18}
-                          strokeWidth={1.5}
-                        />
-                      </div>
+                      <img src="/assets/runic_golem.png" alt="Runic Golem" className="relative z-10 w-[120%] h-[120%] object-contain drop-shadow-[0_4px_10px_rgba(62,39,35,0.8)]" style={{ imageRendering: 'pixelated' }} />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -209,10 +199,10 @@ export const GameGrid: React.FC<GameGridProps> = ({ grid, drone }) => {
                 {/* Danger indicator */}
                 {cell.dangerLevel && cell.dangerLevel > 0 && !isDroneHere && (
                   <div className={clsx(
-                    'absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full',
-                    cell.dangerLevel > 70 ? 'bg-red-500' :
-                      cell.dangerLevel > 40 ? 'bg-amber-500' :
-                        'bg-yellow-500'
+                    'absolute top-1 right-1 w-2.5 h-2.5 rounded-sm shadow-md border border-[#fdf6e3]',
+                    cell.dangerLevel > 70 ? 'bg-[#b71c1c]' :
+                      cell.dangerLevel > 40 ? 'bg-[#ff5500]' :
+                        'bg-[#e6c280]'
                   )} />
                 )}
               </div>
@@ -222,18 +212,18 @@ export const GameGrid: React.FC<GameGridProps> = ({ grid, drone }) => {
       </div>
 
       {/* Legend */}
-      <div className="mt-3 flex flex-wrap gap-3 justify-center">
+      <div className="mt-6 flex flex-wrap gap-5 justify-center bg-[#fdf6e3] px-6 py-3 rounded-sm border-2 border-[#8d6e63] shadow-md z-10 relative">
         {[
-          { type: 'iron' as CellType, label: 'Ferro' },
-          { type: 'gold' as CellType, label: 'Ouro' },
-          { type: 'crystal' as CellType, label: 'Cristal' },
-          { type: 'hazard' as CellType, label: 'Perigo' },
-          { type: 'wall' as CellType, label: 'Parede' },
+          { type: 'iron' as CellType, label: 'Ferro', img: '/assets/iron_ore.png' },
+          { type: 'gold' as CellType, label: 'Ouro', img: '/assets/gold_ore.png' },
+          { type: 'crystal' as CellType, label: 'Cristal', img: '/assets/mana_crystal.png' },
+          { type: 'isotope' as CellType, label: 'Isótopo', img: '/assets/dark_isotope.png' },
+          { type: 'hazard' as CellType, label: 'Lava', img: '/assets/lava.png' },
+          { type: 'wall' as CellType, label: 'Parede Antiga', img: '/assets/ancient_wall.png' },
         ].filter(item => grid.flat().some(c => c.type === item.type)).map(item => {
-          const s = getCellStyle({ x: 0, y: 0, type: item.type });
           return (
-            <div key={item.type} className="flex items-center gap-1 text-[10px] text-slate-500">
-              <div className={clsx('w-3 h-3 rounded border', s.bg, s.border)} />
+            <div key={item.type} className="flex items-center gap-2 text-sm text-[#5d4037] font-serif font-bold uppercase tracking-widest drop-shadow-sm">
+              <img src={item.img} alt={item.label} className="w-5 h-5 filter drop-shadow-sm" style={{ imageRendering: 'pixelated' }} />
               {item.label}
             </div>
           );

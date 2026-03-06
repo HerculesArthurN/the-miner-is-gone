@@ -17,47 +17,30 @@ export const HudButton = ({
     ...props
 }: HudButtonProps) => {
     const variants = {
-        primary: 'border-[#5c4d3c] bg-[#1a1412]/80 text-[#00f2ff] hover:bg-[#2a221f] hover:border-[#00f2ff]/50',
-        secondary: 'border-[#3e342f] bg-transparent text-[#e5d8b5] hover:bg-[#5c4d3c]/20 hover:border-[#e5d8b5]/50',
-        ghost: 'border-transparent bg-transparent text-[#8c7a6b] hover:text-[#00f2ff]',
+        primary: 'bg-[#795548] text-amber-50 border-t-2 border-x-4 border-b-[6px] border-[#3e2723] hover:bg-[#5d4037] active:border-b-0 active:translate-y-1 shadow-xl',
+        secondary: 'bg-[#f4a261] text-[#3e2723] border-t-2 border-x-4 border-b-[6px] border-[#e76f51] hover:bg-[#e76f51] hover:text-amber-50 active:border-b-0 active:translate-y-1 shadow-xl',
+        ghost: 'border-transparent bg-transparent text-[#5d4037] hover:text-[#b71c1c]',
     };
 
     const sizes = {
-        sm: 'px-4 py-1.5 text-xs',
+        sm: 'px-4 py-2 text-xs',
         md: 'px-8 py-3 text-sm',
-        lg: 'px-12 py-4 text-base',
+        lg: 'px-12 py-4 text-base tracking-widest',
     };
-
-    const glows = {
-        primary: 'shadow-[0_0_15px_rgba(0,242,255,0.15)] hover:shadow-[0_0_25px_rgba(0,242,255,0.3)]',
-        secondary: 'shadow-[0_0_15px_rgba(229,216,181,0.05)] hover:shadow-[0_0_25px_rgba(229,216,181,0.15)]',
-        ghost: 'shadow-none',
-    };
-
-    // polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px) - Chamfered corners
-    const clipPath = variant !== 'ghost' ? { clipPath: 'polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)' } : {};
 
     return (
-        <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+        <button // Note: Removed framer-motion here to allow CSS active states to work cleanly without conflict
             className={clsx(
-                'relative font-mono font-bold uppercase tracking-widest transition-all duration-300',
-                'border-[2px]',
+                'relative font-serif font-bold uppercase transition-all duration-150 rounded-sm',
                 variants[variant],
                 sizes[size],
-                glow && glows[variant],
                 className
             )}
-            style={clipPath}
-            {...props}
+            {...(props as any)} // Using as any since we switched to standard button
         >
-            <span className="relative z-10 flex items-center justify-center gap-2">
+            <span className="relative z-10 flex items-center justify-center gap-2 drop-shadow-md">
                 {children as React.ReactNode}
             </span>
-            {variant !== 'ghost' && (
-                <div className="absolute inset-0 z-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:250%_250%,100%_100%] animate-[shimmer_3s_linear_infinite]" />
-            )}
-        </motion.button>
+        </button>
     );
 };

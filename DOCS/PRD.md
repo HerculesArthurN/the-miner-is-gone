@@ -31,7 +31,7 @@
 
 ### 1.1 Missão do Produto
 
-**"The Miner is Gone"** é um jogo web educativo de automação onde o jogador programa drones mineradores usando **TypeScript**. A premissa é simples: o engenheiro-chefe da mineradora sumiu e deixou apenas logs e documentação. O jogador, um novo recruta, precisa escrever os scripts que mantêm a operação funcionando.
+**"The Miner is Gone"** é um jogo web educativo de automação onde o jogador escreve a Magia Rúnica do **TypeScript** para controlar Golens mineradores de pedra e ferro. A premissa é simples: o Mestre da Guilda desapareceu e deixou apenas os antigos pergaminhos de documentação. O jogador, um Aprendiz Forjador, precisa escrever os feitiços precisos que mantêm a operação da forja funcionando em segurança.
 
 A progressão do jogo segue **rigorosamente a ordem do TypeScript Handbook oficial** — cada seção da documentação se torna um conjunto de missões. O jogador não apenas aprende TypeScript: ele aprende a *ler documentação técnica*, a habilidade mais valiosa de um desenvolvedor.
 
@@ -45,20 +45,20 @@ Documentação → Missão → Código → Consequência Visual → Compreensão
 ```
 
 Cada missão segue este ciclo:
-1. O terminal exibe o **link direto** para a seção do Handbook relevante
-2. O jogador lê a documentação e entende o conceito
-3. O jogador escreve o código para resolver a missão
-4. O drone executa o código: sucesso ou falha têm consequências **visuais imediatas**
-5. O conceito se solidifica pela experiência, não pela memorização
+1. O Terminal/Logs da Guilda exibe o **link direto** para a seção do Handbook relevante.
+2. O jogador lê a documentação e entende o conceito.
+3. O jogador escreve o código (feitiço rúnico) para resolver a missão.
+4. O Golem executa o código: sucesso ou falha têm consequências **visuais imediatas**.
+5. O conceito se solidifica pela experiência, não pela memorização.
 
 ### 1.3 Público-Alvo
 
 | Perfil | Ponto de entrada no jogo | Meta ao concluir |
 |---|---|---|
-| **Iniciante absoluto** | Capítulo 1, Nível 1 | Confortável com tipos primitivos, functions e arrays tipados |
-| **Dev JavaScript** | Capítulo 1–2 (revisão rápida) | Migração sólida para TypeScript com interfaces e tipos de objeto |
-| **Dev TypeScript Jr.** | Capítulo 3–4 | Domínio de narrowing, generics e funções complexas |
-| **Dev TypeScript Sênior** | Capítulo 7–8 | Maestria em type manipulation, mapped types e programação em nível de tipo |
+| **Iniciante absoluto** | Ato 1, Nível 1 | Confortável com tipos primitivos, functions e arrays tipados |
+| **Dev JavaScript** | Atos 1–2 (revisão rápida) | Migração sólida para TypeScript com interfaces e tipos de objeto |
+| **Dev TypeScript Jr.** | Atos 3–4 | Domínio de narrowing, generics e funções complexas |
+| **Dev TypeScript Sênior** | Atos 7–8 | Maestria em type manipulation, mapped types e programação em nível de tipo |
 
 ### 1.4 Métricas de Sucesso
 
@@ -553,7 +553,7 @@ const _validate: _PathCheck = true; // Erro de compilação se a rota for invál
 | **Animações** | Framer Motion | `layout` prop para interpolações no grid; `AnimatePresence` para fog of war |
 | **Editor de Código** | `@monaco-editor/react` | LSP nativo; injeção de `.d.ts` por nível |
 
-**Direção de arte:** Terminal industrial Sci-Fi. Tema Dracula ou One Dark. Neon verde/ciano/âmbar. Scanlines sutis. Fonte JetBrains Mono ou Fira Code.
+**Direção de arte:** Medieval Fantasy / Guild Scriptorium 16-bits. Tema pergaminho envelhecido, pedra maciça e ferro forjado. Magia rúnica brilhante em ciano/âmbar. Fonte Serif (clássica) para títulos e JetBrains Mono (ou Fira Code) estritamente para sintaxe/runas.
 
 ### 4.2 Motor de Jogo
 

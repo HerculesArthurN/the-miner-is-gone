@@ -4,90 +4,95 @@ import { TerminalSim } from './TerminalSim';
 import { HudButton } from './HudButton';
 import { BentoGrid } from './BentoGrid';
 import { SkillTree } from './SkillTree';
-import { Terminal, Shield, Activity, Map as MapIcon, ChevronRight, PenTool } from 'lucide-react';
+import { Scroll, Shield, Flame, Map as MapIcon, ChevronRight, Pickaxe } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export const LandingPage: React.FC = () => {
     const navigate = useNavigate();
     const onStart = () => navigate('/play');
+    
     return (
-        <div className="min-h-screen bg-[#0d0a09] selection:bg-[#00f2ff]/30 text-[#e5d8b5] overflow-x-hidden relative font-mono">
+        <div className="min-h-screen bg-[#fdf6e3] selection:bg-[#e6c280]/50 text-[#3e2723] overflow-x-hidden relative font-mono">
+           
             {/* BACKGROUND EFFECTS */}
-            <div className="fixed inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,#1a1412_25%,transparent_25%,transparent_75%,#1a1412_75%,#1a1412),linear-gradient(45deg,#1a1412_25%,transparent_25%,transparent_75%,#1a1412_75%,#1a1412)] bg-[length:20px_20px] bg-[position:0_0,10px_10px]" />
-            <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(92,77,60,0.15)_0%,transparent_80%)] pointer-events-none" />
+            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(45deg,#3e2723_25%,transparent_25%,transparent_75%,#3e2723_75%,#3e2723),linear-gradient(45deg,#3e2723_25%,transparent_25%,transparent_75%,#3e2723_75%,#3e2723)] bg-[length:20px_20px] bg-[position:0_0,10px_10px]" />
+            <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(244,162,97,0.1)_0%,transparent_80%)] pointer-events-none" />
 
             {/* HEADER / NAVIGATION */}
-            <nav className="fixed top-0 w-full z-50 border-b-[2px] border-[#3e342f] bg-[#0d0a09]/90 backdrop-blur-md px-6 py-4 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+            <nav className="fixed top-0 w-full z-50 border-b-8 border-[#5d4037] bg-[#f4ebd8]/95 backdrop-blur-md px-6 py-4 flex items-center justify-between shadow-[0_6px_25px_rgba(93,64,55,0.4)]">
                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 border-[2px] border-[#5c4d3c] p-2 flex items-center justify-center bg-[#1a1412] relative group">
-                        <div className="absolute inset-0 bg-[#e5d8b5]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter drop-shadow-[0_0_5px_rgba(229,216,181,0.5)] brightness-150 contrast-125 sepia hover:sepia-0 transition-all" />
-                        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#00f2ff] shadow-[0_0_5px_#00f2ff]" />
+                    <div className="w-14 h-14 border-4 border-[#8d6e63] p-2 flex items-center justify-center bg-[#e6c280] rounded shadow-[inset_0_0_10px_rgba(93,64,55,0.5)]">
+                        <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(62,39,35,0.8)]" />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[#e5d8b5] font-bold font-rajdhani tracking-tighter text-xl leading-none uppercase drop-shadow-md">
+                        <span className="text-[#b71c1c] font-bold font-serif text-2xl leading-none uppercase drop-shadow-sm tracking-widest">
                             The Miner is Gone
                         </span>
-                        <span className="text-[10px] font-mono text-[#8c7a6b] tracking-[0.2em] font-bold pt-1">
+                        <span className="text-[11px] font-mono text-[#8d6e63] tracking-[0.2em] font-bold pt-1">
                             SCRIBE_VER: 2.0.4-RUNIC
                         </span>
                     </div>
                 </div>
-                <div className="hidden md:flex items-center gap-10 text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#8c7a6b]">
-                    <a href="#features" className="hover:text-[#00f2ff] transition-colors relative group">
-                        // O_RITUAL
-                        <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#00f2ff] group-hover:w-full transition-all duration-300" />
+                <div className="hidden md:flex items-center gap-10 text-[12px] font-mono font-bold tracking-[0.2em] uppercase text-[#5d4037]">
+                    <a href="#features" className="hover:text-[#b71c1c] transition-all relative group">
+                        [ O_RITUAL ]
+                        <span className="absolute -bottom-2 left-0 w-0 h-[3px] bg-[#b71c1c] group-hover:w-full transition-all duration-300 shadow-sm" />
                     </a>
-                    <a href="#diagnostics" className="hover:text-[#00f2ff] transition-colors relative group">
-                        // A_FORJA
-                        <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#00f2ff] group-hover:w-full transition-all duration-300" />
+                    <a href="#diagnostics" className="hover:text-[#b71c1c] transition-all relative group">
+                        [ A_FORJA ]
+                        <span className="absolute -bottom-2 left-0 w-0 h-[3px] bg-[#b71c1c] group-hover:w-full transition-all duration-300 shadow-sm" />
                     </a>
-                    <a href="#skill-tree" className="hover:text-[#00f2ff] transition-colors relative group">
-                        // OS_CÂNTICOS
-                        <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#00f2ff] group-hover:w-full transition-all duration-300" />
+                    <a href="#skill-tree" className="hover:text-[#b71c1c] transition-all relative group">
+                        [ OS_CÂNTICOS ]
+                        <span className="absolute -bottom-2 left-0 w-0 h-[3px] bg-[#b71c1c] group-hover:w-full transition-all duration-300 shadow-sm" />
                     </a>
                 </div>
                 <HudButton size="sm" variant="primary" onClick={onStart}>
-                    [ INITIALIZE PROTOCOL ]
+                    DESPERTAR GOLEM
                 </HudButton>
             </nav>
 
             {/* HERO SECTION */}
-            <section className="relative pt-40 pb-20 px-6 max-w-[90rem] mx-auto z-10">
+            <section className="relative pt-44 pb-24 px-6 max-w-[90rem] mx-auto z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div className="lg:col-span-6 xl:col-span-7 space-y-10">
+                        {/* Status Wax Seal */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="inline-flex items-center gap-3 px-4 py-2 bg-[#ff5500]/10 border-[2px] border-[#ff5500]/30 text-[#ff5500] text-[11px] font-mono font-bold tracking-[0.2em] uppercase"
-                            style={{ clipPath: 'polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)' }}
+                            className="inline-flex items-center gap-3 px-5 py-2.5 bg-[#e6c280] border-4 border-[#b71c1c] text-[#b71c1c] text-[12px] font-serif font-bold tracking-[0.1em] uppercase shadow-[4px_4px_0_rgba(183,28,28,0.2)]"
                         >
-                            <Activity size={14} className="animate-pulse" />
-                            <span><span className="text-[#8c7a6b]">SYSTEM:</span> ONLINE | <span className="text-[#8c7a6b]">OVERSEER:</span> MISSING</span>
+                            <div className="bg-[#b71c1c] p-1.5 rounded-full text-amber-50 shadow-inner">
+                                <Flame size={14} className="animate-pulse" />
+                            </div>
+                            <span><span className="text-[#8d6e63]">STATUS:</span> FORJA ATIVA | <span className="text-[#8d6e63]">MESTRE DA GUILDA:</span> DESAPARECIDO</span>
                         </motion.div>
 
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-6xl md:text-[5.5rem] font-bold font-rajdhani text-[#e5d8b5] leading-[0.9] uppercase tracking-tighter drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
+                            className="text-6xl md:text-[5.5rem] font-bold font-serif text-[#1b5e20] leading-[0.95] uppercase tracking-wide drop-shadow-[2px_4px_0_rgba(27,94,32,0.15)]"
                         >
-                            Forge The <br />
-                            <span className="text-[#00f2ff] drop-shadow-[0_0_15px_rgba(0,242,255,0.4)]">Type Matrix</span> <br />
-                            In The Dark.
+                            A Guilda <br />
+                            <span className="text-[#b71c1c] drop-shadow-[2px_4px_0_rgba(183,28,28,0.15)]">Precisa de um</span> <br />
+                            Novo Mestre.
                         </motion.h1>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="max-w-2xl space-y-4"
+                            className="max-w-2xl space-y-6"
                         >
-                            <p className="text-lg text-[#8c7a6b] font-mono leading-relaxed">
-                                A dormant mining golem awaits its master in Sector 7G. The ancient runes of TypeScript are your only tools to rewrite its navigation protocols.
+                            <p className="text-xl text-[#3e2723] font-serif italic leading-relaxed bg-[#f4ebd8] p-6 border-4 border-[#8d6e63] shadow-inner drop-shadow-md relative">
+                                Domine TypeScript controlando Golems mineradores em um mundo medieval. Do básico aos algoritmos complexos (LeetCode Hard), escreva feitiços de código estritamente tipados.
+                                {/* Decorative corners */}
+                                <div className="absolute -top-2 -left-2 w-4 h-4 bg-[#5d4037] border-2 border-[#8d6e63] rounded-full" />
+                                <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-[#5d4037] border-2 border-[#8d6e63] rounded-full" />
                             </p>
-                            <p className="border-l-4 border-[#ff0000] pl-4 text-[#e5d8b5] font-bold text-sm bg-[#ff0000]/10 py-2">
-                                Golem Safety Dictate: Code containing <code className="text-[#ff0000] line-through font-bold">any</code> will trigger immediate cascade failure.
+                            <p className="border-l-8 border-[#b71c1c] pl-5 text-[#b71c1c] font-bold text-base font-serif bg-[#fdf6e3] py-4 shadow-[4px_4px_0_rgba(183,28,28,0.1)]">
+                                O uso da magia sombria <code className="text-[#fdf6e3] line-through font-mono font-bold px-2 bg-[#b71c1c] mx-1 rounded-sm">any</code> é estritamente proibido.
                             </p>
                         </motion.div>
 
@@ -95,13 +100,13 @@ export const LandingPage: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="flex flex-wrap gap-6 pt-6"
+                            className="flex flex-wrap gap-6 pt-8"
                         >
                             <HudButton size="lg" variant="primary" onClick={onStart}>
-                                EXECUTE DEPLOY
+                                DESPERTAR GOLEM
                             </HudButton>
                             <HudButton size="lg" variant="secondary" onClick={() => window.open('https://www.typescriptlang.org/docs/handbook/intro.html', '_blank')}>
-                                &gt; ACCESS ARCHIVES
+                                &gt; LER OS PERGAMINHOS
                             </HudButton>
                         </motion.div>
                     </div>
@@ -112,131 +117,126 @@ export const LandingPage: React.FC = () => {
                         transition={{ delay: 0.4 }}
                         className="lg:col-span-6 xl:col-span-5 relative"
                     >
-                        <div className="absolute -inset-4 bg-gradient-to-tr from-[#3e342f]/40 to-transparent blur-2xl -z-10" />
                         <TerminalSim />
                     </motion.div>
                 </div>
             </section>
 
-            {/* METRICS SECTION */}
-            <section id="diagnostics" className="py-24 border-y-[2px] border-[#3e342f] bg-[#0a0807] relative z-10">
+            {/* METRICS SECTION - Omitted dark backgrounds, replaced with royal blue/stone motif */}
+            <section id="diagnostics" className="py-24 border-y-8 border-[#5d4037] bg-[#e6c280] relative z-10 shadow-[inner_0_10px_30px_rgba(93,64,55,0.2)]">
                 <div className="max-w-[90rem] mx-auto space-y-16">
                     <div className="text-center justify-center flex flex-col items-center space-y-4">
-                        <div className="h-1 w-24 bg-[#00f2ff] mb-2" />
-                        <h2 className="text-4xl font-bold font-rajdhani text-[#e5d8b5] uppercase tracking-widest">&gt; THE_FORGE_DIAGNOSTICS</h2>
-                        <p className="text-[#8c7a6b] font-mono text-sm uppercase tracking-[0.2em] max-w-lg">Real-time compiler metrics & validation telemetry</p>
+                        <div className="h-2 w-32 bg-[#b71c1c] mb-2 shadow-sm" />
+                        <h2 className="text-4xl font-bold font-serif text-[#1b5e20] uppercase tracking-widest drop-shadow-md">DIAGNÓSTICOS DA FORJA</h2>
+                        <p className="text-[#8d6e63] font-serif text-lg italic tracking-[0.1em] max-w-lg font-bold">Métricas de runas em tempo real e telemetria mágica</p>
                     </div>
-                    <BentoGrid />
+                    {/* BentoGrid will look fine since its children can adapt, but we might need to overwrite BentoGrid styles later if it is too dark */}
+                    <div className="opacity-90 grayscale shadow-xl mix-blend-multiply">
+                        <BentoGrid />
+                    </div>
                 </div>
             </section>
 
-            {/* FEATURES / PREVIEW */}
+            {/* FEATURES / PREVIEW (COMPLETELY REWRITTEN SECTION) */}
             <section id="features" className="py-32 px-6 max-w-[90rem] mx-auto relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    
+                    {/* The Wood Framed Image Container */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="relative group"
+                        className="relative group p-4 bg-[#5d4037] border-8 border-[#3e2723] rounded-sm shadow-[10px_10px_0_rgba(62,39,35,0.3)]"
                     >
-                        {/* Iron Border Box */}
-                        <div className="absolute -inset-2 border-[2px] border-[#5c4d3c]/50 transition-all duration-500 group-hover:border-[#00f2ff]/30" style={{ clipPath: 'polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)' }} />
-                        
-                        <div className="bg-[#1a1412] border-[2px] border-[#3e342f] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative" style={{ clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)' }}>
-                            <div className="p-3 border-b-[2px] border-[#3e342f] bg-[#0d0a09] flex items-center justify-between">
-                                <div className="flex gap-2 ml-2">
-                                    <div className="w-2.5 h-2.5 bg-[#ff0000]/60" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
-                                    <div className="w-2.5 h-2.5 bg-[#ffb800]/60" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
-                                    <div className="w-2.5 h-2.5 bg-[#39ff14]/60" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
-                                </div>
-                                <div className="text-[10px] font-mono tracking-widest text-[#8c7a6b]">GOLEM_TELEMETRY.TSX</div>
-                                <div className="w-10" />
-                            </div>
-                            
+                        <div className="bg-[#fdf6e3] border-4 border-[#e6c280] p-2 relative overflow-hidden">
+                            {/* Inner wooden border looking like a painting */}
                             <img
-                                src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&q=80&w=1000"
-                                alt="Game Preview"
-                                className="w-full h-auto opacity-70 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-700"
+                                src="/assets/golem_feature.png"
+                                alt="Golem Working on a Bright Cave"
+                                className="w-full h-auto object-cover border-4 border-[#3e2723] rounded-[2px] transition-transform duration-700 group-hover:scale-105"
                             />
-                            
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0a09] via-transparent to-transparent opacity-80" />
-
-                            {/* UI Brackets */}
-                            <div className="absolute top-12 left-12 text-[#00f2ff]/40 font-mono text-2xl drop-shadow-[0_0_8px_#00f2ff]">「</div>
-                            <div className="absolute bottom-12 right-12 text-[#00f2ff]/40 font-mono text-2xl drop-shadow-[0_0_8px_#00f2ff] rotate-180">「</div>
+                            {/* Scroll ornaments */}
+                            <div className="absolute top-4 left-4 text-[#b71c1c]/40 font-serif text-4xl font-bold">⚜</div>
+                            <div className="absolute bottom-4 right-4 text-[#b71c1c]/40 font-serif text-4xl font-bold rotate-180">⚜</div>
                         </div>
                     </motion.div>
 
+                    {/* Features Description */}
                     <div className="space-y-12">
-                        <h2 className="text-4xl lg:text-5xl font-bold font-rajdhani text-[#e5d8b5] uppercase tracking-tight drop-shadow-md">
-                            Forged for the <br />
-                            <span className="text-[#ff5500] drop-shadow-[0_0_15px_rgba(255,85,0,0.4)]">Type Vanguard</span>
-                        </h2>
+                        <div className="space-y-4">
+                            <h2 className="text-5xl font-bold font-serif text-[#1b5e20] uppercase tracking-tight drop-shadow-sm leading-tight">
+                                A Magia Antiga da <br />
+                                <span className="text-[#b71c1c] drop-shadow-md">Tipagem Estrita</span>
+                            </h2>
+                            <p className="text-[#3e2723] font-serif text-xl leading-relaxed italic border-l-8 border-[#e6c280] pl-6 py-2 mt-4">
+                                A magia não é caos, é ordem. Na Guilda, nós não controlamos nossos Golems com comandos soltos; nós os programamos usando a linguagem dos Deuses Antigos: TypeScript.
+                            </p>
+                        </div>
                         
-                        <div className="space-y-8">
+                        <div className="space-y-10 mt-10">
                             {[
-                                { title: "Real-time Telemetry", desc: "Integrated Monaco Editor with parchment styling and level-specific type definitions.", icon: PenTool },
-                                { title: "Strict Compliance Doctrine", desc: "Zero tolerance for weak typing. The TypeScript compiler is your unforgiving judge.", icon: Shield },
-                                { title: "Visual Logic Manifestation", desc: "Watch your syntax animate a 2D grid in real-time. Debug through motion and ticks.", icon: MapIcon },
+                                { title: "A Forja não Mente (Validações Estáticas)", desc: "Se o seu feitiço tiver falhas lógicas, o Golem não vai se mover. O ambiente detecta erros antes mesmo da picareta bater na pedra.", icon: Shield },
+                                { title: "Economia de Estamina (Big O Notation)", desc: "Código ruim gasta energia. Um loop infinito ou uma busca O(n²) vai sobreaquecer as runas do seu Golem. Aprenda a otimizar sua lógica.", icon: Flame },
+                                { title: "O Grimório Oficial", desc: "Cada missão está diretamente conectada aos Pergaminhos Oficiais (TypeScript Handbook). Você joga melhor lendo a documentação.", icon: Scroll },
                             ].map((f, i) => (
                                 <div key={i} className="flex gap-6 items-start group">
-                                    <div className="mt-1 p-3 bg-[#1a1412] border-[2px] border-[#3e342f] text-[#w] text-[#00f2ff] group-hover:border-[#00f2ff] group-hover:bg-[#00f2ff]/10 transition-colors" style={{ clipPath: 'polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)' }}>
-                                        <f.icon size={22} className="drop-shadow-[0_0_8px_#00f2ff]" />
+                                    {/* Wax Seal Icon */}
+                                    <div className="mt-1 w-16 h-16 rounded-full bg-[#b71c1c] text-[#fdf6e3] border-4 border-[#e6c280] shadow-[4px_4px_0_rgba(183,28,28,0.2)] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                        <f.icon size={26} strokeWidth={2.5} />
                                     </div>
                                     <div>
-                                        <h4 className="text-[#e5d8b5] font-bold font-mono text-base tracking-widest uppercase">{f.title}</h4>
-                                        <p className="text-[#8c7a6b] text-sm font-mono leading-relaxed mt-2">{f.desc}</p>
+                                        <h4 className="text-[#1b5e20] font-bold font-serif text-2xl tracking-wide uppercase mb-2">{f.title}</h4>
+                                        <p className="text-[#5d4037] text-lg font-serif leading-relaxed bg-[#f4ebd8] p-4 border-2 border-[#e6c280] shadow-sm">{f.desc}</p>
                                     </div>
                                 </div>
                             ))}
-                        </div>
-                        <div className="pt-4">
-                            <HudButton size="lg" variant="primary" onClick={onStart}>
-                                [ BEGIN MANUAL CHALLENGES ]
-                            </HudButton>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* SKILL TREE SECTION */}
-            <section id="skill-tree" className="py-24 border-t-[2px] border-[#3e342f] bg-[linear-gradient(180deg,#0a0807_0%,#0d0a09_100%)] relative z-10">
+            <section id="skill-tree" className="py-24 border-y-8 border-[#5d4037] bg-[#f4ebd8] relative z-10 shadow-[inner_0_5px_15px_rgba(93,64,55,0.1)]">
                 <div className="max-w-[90rem] mx-auto">
-                    <div className="text-center flex flex-col items-center space-y-4 mb-16 px-6">
-                         <div className="h-1 w-24 bg-[#00f2ff] mb-2" />
-                        <h2 className="text-4xl font-bold font-rajdhani text-[#e5d8b5] uppercase tracking-widest">&gt; THE_RUNIC_CURRICULUM</h2>
-                        <p className="text-[#8c7a6b] font-mono text-sm uppercase tracking-[0.2em]">Ascend from Act I to Act V in the Scriptorium</p>
+                    <div className="text-center flex flex-col items-center space-y-5 mb-16 px-6">
+                         <div className="h-2 w-32 bg-[#1b5e20] mb-2 shadow-sm" />
+                        <h2 className="text-4xl font-bold font-serif text-[#b71c1c] uppercase tracking-widest drop-shadow-sm">O CAMINHO DO ARQUIMAGO</h2>
+                        <p className="text-[#5d4037] font-serif text-xl italic font-bold">Ascenda do Ato I ao Ato V na Torre do Scriptorium</p>
                     </div>
-                    <SkillTree />
+                    {/* Overwriting SkillTree background colors inside */}
+                    <div className="[&>div]:bg-transparent">
+                         <SkillTree />
+                    </div>
                 </div>
             </section>
 
             {/* TESTIMONIALS / LOGS */}
             <section className="py-32 px-6 max-w-[90rem] mx-auto relative z-10">
                 <div className="space-y-16">
-                    <div className="text-center flex flex-col items-center space-y-4">
-                         <div className="h-1 w-24 bg-[#ff5500] mb-2" />
-                        <h2 className="text-3xl font-bold font-rajdhani text-[#e5d8b5] uppercase tracking-widest">&gt; INTERCEPTED_SCROLLS</h2>
+                    <div className="text-center flex flex-col items-center space-y-5">
+                         <div className="h-2 w-32 bg-[#e6c280] mb-2 shadow-sm" />
+                        <h2 className="text-4xl font-bold font-serif text-[#1b5e20] uppercase tracking-widest drop-shadow-sm">PERGAMINHOS INTERCEPTADOS</h2>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                         {[
-                            { user: "scribe_x86", msg: "The 'Conditional Types' runic challenge actually helped me refactor our guild's design system. Arcane magic." },
-                            { user: "golem_tamer", msg: "I used to think 'any' was okay. After Act IV, I can't look at it without invoking a cleansing ritual." },
-                            { user: "algo_queen", msg: "Type Gymnastics levels are harder than most LeetCode Hard problems. A flawless trial of logic." },
+                            { user: "aprendiz_js", msg: "Eu costumava usar any quando os feitiços davam errado. Depois de passar pelo Ato III, meu Golem agora lida com interfaces complexas e Discriminated Unions sem quebrar a forja." },
+                            { user: "mestre_sênior", msg: "O Desafio da Mochila no Ato IV fritou minha mente. Aprender Generics aplicando em um inventário com limite de peso foi a melhor aula de Estruturas que já tive." },
+                            { user: "rainha_algo", msg: "As provações em Tipagem Avançada são mais difíceis que os pergaminhos míticos do LeetCode. Um teste impecável de lógica rítmica e paciência." },
                         ].map((log, i) => (
-                            <div key={i} className="bg-[#1a1412] border-[2px] border-[#3e342f] p-8 font-mono space-y-6 hover:border-[#00f2ff]/50 transition-colors relative group" style={{ clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)' }}>
-                                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#00f2ff]/10 to-transparent pointer-events-none group-hover:from-[#00f2ff]/20 transition-all" />
+                            <div key={i} className="bg-[#fdf6e3] border-4 border-[#8d6e63] p-8 font-serif space-y-6 shadow-[6px_6px_0_rgba(141,110,99,0.2)] hover:-translate-y-2 hover:shadow-[10px_10px_0_rgba(183,28,28,0.2)] transition-all relative group group-hover:border-[#b71c1c]">
+                                <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#1b5e20] border-4 border-[#e6c280]" />
+                                <div className="absolute top-0 right-0 w-16 h-16 bg-[#b71c1c]/5 pointer-events-none group-hover:bg-[#b71c1c]/10 transition-all" />
                                 
-                                <div className="flex items-center gap-3 text-[10px] text-[#8c7a6b] tracking-widest">
-                                    <Terminal size={14} className="text-[#00f2ff]" />
-                                    <span>SCROLL ID: {log.user.toUpperCase()}</span>
+                                <div className="flex items-center gap-3 text-[12px] text-[#b71c1c] tracking-widest font-bold">
+                                    <Scroll size={18} strokeWidth={2.5} />
+                                    <span>{log.user.toUpperCase()}</span>
                                 </div>
-                                <p className="text-sm text-[#e5d8b5] italic leading-relaxed">
+                                <p className="text-lg text-[#3e2723] italic leading-relaxed font-semibold">
                                     "{log.msg}"
                                 </p>
-                                <div className="flex justify-end pt-4 border-t-[2px] border-[#3e342f] border-dashed">
-                                    <span className="text-[10px] text-[#ff5500] font-bold tracking-[0.2em]">EPOCH: 2142.08.12</span>
+                                <div className="flex justify-end pt-4 border-t-2 border-[#e6c280] border-dashed">
+                                    <span className="text-[11px] text-[#5d4037] font-bold tracking-[0.2em] font-mono">ERA: 1042.08.12</span>
                                 </div>
                             </div>
                         ))}
@@ -244,21 +244,38 @@ export const LandingPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* FOOTER */}
-            <footer className="py-24 border-t-[2px] border-[#3e342f] bg-[#0a0807] relative z-20">
-                <div className="max-w-[90rem] mx-auto px-6 flex flex-col items-center space-y-10">
-                    <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 border-[2px] border-[#5c4d3c] p-3 flex items-center justify-center bg-[#1a1412] shadow-[0_0_20px_rgba(92,77,60,0.3)]">
-                            <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter brightness-150 sepia contrast-125" />
+            {/* FOOTER & FINAL CTA */}
+            <footer className="py-24 border-t-8 border-[#5d4037] bg-[#e6c280] relative z-20 shadow-[inner_0_20px_30px_rgba(93,64,55,0.2)]">
+                <div className="max-w-[90rem] mx-auto px-6 flex flex-col items-center space-y-12">
+                    
+                    {/* Final CTA Block (Wood Plank Base) */}
+                    <div className="w-full max-w-4xl bg-[#fdf6e3] border-8 border-[#8d6e63] p-12 text-center flex flex-col items-center justify-center space-y-8 shadow-[12px_12px_0_rgba(93,64,55,0.3)] mb-12 relative overflow-hidden">
+                        <Pickaxe size={64} className="text-[#b71c1c]/80 drop-shadow-sm absolute -right-6 top-6 rotate-45" />
+                        <h2 className="text-4xl md:text-5xl font-bold font-serif text-[#1b5e20] uppercase tracking-widest z-10">
+                            A Picareta Está no Chão
+                        </h2>
+                        <p className="text-[#5d4037] font-serif text-xl max-w-2xl leading-relaxed italic font-bold z-10 border-b-4 border-[#e6c280] pb-6">
+                            A mina não vai se explorar sozinha. Abra o editor, invoque seus tipos e prove que você é digno de liderar a Guilda.
+                        </p>
+                        <div className="pt-2 z-10 text-xl">
+                            <HudButton size="lg" variant="primary" onClick={onStart}>
+                                ASSUMIR O COMANDO DA MINA
+                            </HudButton>
                         </div>
-                        <h1 className="text-3xl font-bold font-rajdhani text-[#e5d8b5] uppercase tracking-[0.2em]">The Miner is Gone</h1>
                     </div>
-                    <p className="text-[#8c7a6b] font-mono text-sm max-w-2xl text-center leading-relaxed">
-                        An educational forge for sovereign engineers. Developed to ensure type safety in the darkest depths of the asteroid belt. No golems were harmed during compilation.
+
+                    <div className="flex items-center gap-8">
+                        <div className="w-20 h-20 border-4 border-[#5d4037] p-4 flex items-center justify-center bg-[#fdf6e3] rounded shadow-[4px_4px_0_rgba(93,64,55,0.4)]">
+                            <img src="/logo-favicon.svg" alt="Logo" className="w-full h-full object-contain filter drop-shadow hover:scale-105 transition-transform" />
+                        </div>
+                        <h1 className="text-4xl font-bold font-serif text-[#b71c1c] uppercase tracking-[0.2em] drop-shadow-sm">The Miner is Gone</h1>
+                    </div>
+                    <p className="text-[#5d4037] font-serif text-lg max-w-2xl text-center leading-relaxed font-semibold">
+                        Uma forja educacional para engenheiros soberanos. Nossos Golems não sofrem dano durante as compilações, apenas arranhões nas pedras.
                     </p>
-                    <div className="w-24 h-[1px] bg-[#5c4d3c] my-4" />
-                    <div className="text-[11px] font-mono text-[#5c4d3c] tracking-[0.3em] font-bold">
-                        © 2026 HERCULES ARTHUR NARDELLI | THE GUILD MAINTAINS ALL RIGHTS
+                    <div className="w-32 h-[4px] bg-[#8d6e63] my-6 rounded" />
+                    <div className="text-[12px] font-mono text-[#5d4037] tracking-[0.3em] font-bold">
+                        © 2026 HERCULES ARTHUR NARDELLI | A GUILDA MANTÉM OS DIREITOS
                     </div>
                 </div>
             </footer>

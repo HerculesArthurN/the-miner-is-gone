@@ -3,11 +3,11 @@ import { motion } from 'motion/react';
 import { ChevronRight, Database, Box, Layers, Workflow, GitMerge, ShieldCheck, Terminal, BrainCircuit } from 'lucide-react';
 
 const acts = [
-    { id: 1, title: 'Ato I: A Superfície', icon: Terminal, desc: 'Domine tipos de variáveis, interfaces e assinaturas de funções na forja básica.' },
-    { id: 2, title: 'Ato II: O Labirinto', icon: ShieldCheck, desc: 'Técnicas de narrowing, união e intersecção para guiar o golem no subsolo.' },
-    { id: 3, title: 'Ato III: A Câmara Modular', icon: Box, desc: 'Extraia o poder dos Generics. Construa sistemas adaptativos e cofres seguros.' },
-    { id: 4, title: 'Ato IV: A Linhagem', icon: Layers, desc: 'Arquitetura avançada. Herança, classes abstratas e controle de visibilidade arcana.' },
-    { id: 5, title: 'Ato V: O Arquiteto', icon: BrainCircuit, desc: 'Ginástica de Tipos pura. Mapped Types e manipulação condicional no cume da montanha.' },
+    { id: 1, title: 'Ato I: A Superfície (Sintaxe e Runas Básicas)', icon: Terminal, desc: 'Aprenda a estruturar tipos primitivos, arrays e funções para fazer seu Golem dar os primeiros passos e coletar minérios simples.' },
+    { id: 2, title: 'Ato II: O Subterrâneo (Dicionários e O(1))', icon: ShieldCheck, desc: 'O Golem está lento? Crie memórias em formato de Hash Maps/Interfaces para que ele encontre veios de ouro sem gastar toda a estamina em buscas ineficientes.' },
+    { id: 3, title: 'Ato III: Cavernas Ramificadas (Grafos e Recursividade)', icon: Box, desc: 'Ensine seu autômato a explorar túneis escuros usando buscas em profundidade (DFS), Union Types e Type Guards rigorosos.' },
+    { id: 4, title: 'Ato IV: A Forja Quântica (Generics e Mochila)', icon: Layers, desc: 'O verdadeiro teste. Maximize o lucro do inventário usando Algoritmos de Programação Dinâmica e Tipos Genéricos <T>.' },
+    { id: 5, title: 'Ato V: O Núcleo (Ginástica de Tipos)', icon: BrainCircuit, desc: 'Onde os Mestres resolvem labirintos lógicos apenas manipulando a estrutura da magia com Mapped e Conditional Types, em tempo de compilação.' },
 ];
 
 export const SkillTree: React.FC = () => {
@@ -41,7 +41,7 @@ export const SkillTree: React.FC = () => {
                                 </span>
                                 <ChevronRight size={14} className="text-[#8c7a6b] group-hover:text-[#00f2ff] transition-colors" />
                             </div>
-                            <h3 className="text-2xl font-bold font-rajdhani text-[#e5d8b5] mb-3 uppercase tracking-tight">
+                            <h3 className="text-2xl font-bold font-serif text-amber-100 mb-3 uppercase tracking-tight">
                                 {act.title}
                             </h3>
                             <p className="text-sm text-[#8c7a6b] font-mono leading-relaxed">

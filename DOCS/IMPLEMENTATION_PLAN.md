@@ -54,11 +54,12 @@ O projeto atingiu maturidade técnica significativa:
 - [X] Criar tela de "Game Over" temática e "Victory Screen" com medalhas históricas (Estética da Forja).
 - [X] Implementar persistência de progresso no `localStorage`.
 - [X] Melhorar visual do Ground/Walls com texturas ou SVG dinâmico (Assets 16-bits Pixel Art injetados).
-- [ ] README atualizado com instruções de contribuição.
+- [X] README atualizado com instruções de contribuição e Lore da Guilda.
 
 ---
 
 ## Decisões Técnicas
 
-- **Dynamic Injection**: O Sandbox agora injeta qualquer método da API automaticamente como global. Isso facilita muito a criação de níveis com APIs customizadas sem mexer no motor core.
-- **Overloads**: O `scanDrone` suporta múltiplas assinaturas, provando que o transpiler real lidou bem com o código do jogador (o TypeScript Handbook usa muito overloads).
+- **Estética de Fantasia Vibrante**: Abandonamos o "Dark Mode" genérico em favor de uma estética de "Bright Fantasy Scriptorium". Isso torna o aprendizado de TypeScript menos intimidador e mais lúdico, usando metáforas de magias, runas e forja de golens.
+- **Dynamic Injection**: O Sandbox injeta qualquer método da API automaticamente como global. Isso facilita muito a criação de níveis com APIs customizadas sem mexer no motor core.
+- **Overloads**: O `scan()` suporta múltiplas assinaturas, provando que o transpiler real lidou bem com o código do jogador (o TypeScript Handbook usa muito overloads).

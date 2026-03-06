@@ -20,18 +20,16 @@ export const level_1_1: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/basic-types.html#static-type-checking',
     },
     mission: {
-        briefing: `# Missão 1.1 — O Primeiro Log
+        briefing: `# Ato 1.1 — As Runas Conflitantes 📜
+    
+O Mestre Forjador desapareceu, deixando para trás segredos e um Golem de Ferro imóvel. O pergaminho de controle está com as runas borradas.
 
-O engenheiro-chefe sumiu. Ele deixou um script quebrado no painel de controle.
-O drone não parte porque há um \`erro de tipo\` silencioso no código.
+O Golem não desperta porque há um **erro de tipo** rúnico no código. Em nossa Ordem, o TypeScript é a magia que detecta esses conflitos **antes** mesmo de acendermos a forja. Isso é o que chamamos de **Análise Estática**.
 
-O TypeScript detecta esse tipo de erro **antes** de você executar qualquer coisa —
-é o que chamamos de **análise estática**.
+📖 **Estude o Cânone:** [The Basics › Static type-checking](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#static-type-checking)
 
-📖 Leia: [The Basics › Static type-checking](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#static-type-checking)
-
-**Objetivo:** Corrija as anotações de tipo e mova o drone até o ferro.`,
-        objective: 'Coletar o ferro em (2, 2) sem erros de tipo.',
+**Seu Teste:** Corrija as anotações rúnicas (tipos) e guie o Golem até o minério de ferro em (2, 2).`,
+        objective: 'Despertar o Golem corrigindo o conflito de tipos e minerar em (2, 2).',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -43,11 +41,11 @@ O TypeScript detecta esse tipo de erro **antes** de você executar qualquer cois
     droneStart: { x: 0, y: 0 },
     hardware: { maxBattery: 100, maxTicks: 20 },
     apiTypeDefs: CH1_API,
-    starterCode: `// Missão: Corrija os erros de tipo e mova o drone até o ferro em (2, 2).
-// O TypeScript garante que você passe os tipos CORRETOS antes de executar.
+    starterCode: `// Missão: Desperte o Golem corrigindo o conflito de tipos.
+// O Grimório exige que o destino seja um 'number' puro.
 
-// ❌ Erro: x deveria ser number, mas está recebendo string
-const targetX: number = "2"; // <- corrija aqui
+// ❌ Conflito: targetX deveria ser number, mas está recebendo string
+const targetX: number = "2"; // <- purifique esta runa
 const targetY: number = 2;
 
 await move(targetX, targetY);
@@ -74,17 +72,16 @@ export const level_1_2: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/basic-types.html#non-exception-failures',
     },
     mission: {
-        briefing: `# Missão 1.2 — Erros Silenciosos
+        briefing: `# Ato 1.2 — Sussurros Inexistentes 🕯️
 
-Em JavaScript, acessar uma propriedade que não existe retorna \`undefined\` — sem erro.
-O TypeScript **recusa** esse acesso silencioso e avisa antes do runtime.
+No dialeto comum (JavaScript), tentar invocar um feitiço que não existe apenas resulta em silêncio (undefined). Mas um Mestre Forjador não aceita incertezas.
 
-Isso evita bugs difíceis de rastrear: o código "funciona" mas retorna lixo.
+A Magia Rúnica **bloqueia** qualquer tentativa de acessar o que não existe antes mesmo do Golem se mover. Isso evita que o constructo falhe no meio da mina.
 
-📖 Leia: [The Basics › Non-exception Failures](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#non-exception-failures)
+📖 **Estude o Cânone:** [The Basics › Non-exception Failures](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#non-exception-failures)
 
-**Objetivo:** Corrija o acesso incorreto à propriedade do objeto de configuração.`,
-        objective: 'Corrigir o código e mover o drone até o ouro.',
+**Seu Teste:** Corrija o acesso à propriedade rúnica no objeto de configuração para que o Golem encontre o ouro.`,
+        objective: 'Corrigir as propriedades do objeto e guiar o Golem até o ouro.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -96,22 +93,22 @@ Isso evita bugs difíceis de rastrear: o código "funciona" mas retorna lixo.
     droneStart: { x: 0, y: 0 },
     hardware: { maxBattery: 100, maxTicks: 15 },
     apiTypeDefs: CH1_API,
-    starterCode: `// Missão: O objeto de configuração foi digitado errado.
-// O TypeScript deve rejeitar o acesso à propriedade incorreta.
+    starterCode: `// Missão: O pergaminho de direção foi escrito com termos mundanos.
+// O Grimório rejeita o que não foi formalmente declarado na interface.
 
-interface DroneTarget {
+interface GolemTarget {
   positionX: number;
   positionY: number;
   material: string;
 }
 
-const target: DroneTarget = {
+const target: GolemTarget = {
   positionX: 1,
   positionY: 1,
   material: "ouro",
 };
 
-// ❌ Erro: 'x' não existe em DroneTarget. A propriedade correta é 'positionX'
+// ❌ Conflito: 'x' não existe em GolemTarget. A runa correta é 'positionX'
 await move(target.x, target.positionY); // <- corrija aqui
 await mine(target.material);
 `,
@@ -136,18 +133,17 @@ export const level_1_3: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/basic-types.html#types-for-tooling',
     },
     mission: {
-        briefing: `# Missão 1.3 — O Autocomplete como Aliado
+        briefing: `# Ato 1.3 — A Visão do Scriptorium 👁️
 
-O TypeScript não apenas **detecta erros** — ele também **guia** você.
+A Magia Rúnica não serve apenas para punir erros; ela serve para **guiar** sua pena.
 
-O IntelliSense (autocomplete) sabe exatamente quais propriedades e métodos
-existem, e te mostra em tempo real enquanto você digita.
+O **Scriptorium** (IntelliSense) conhece cada contrato e cada runa disponível. Ele sussurra as possibilidades enquanto você escreve, garantindo que suas mãos nunca tremam.
 
-📖 Leia: [The Basics › Types for Tooling](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#types-for-tooling)
+📖 **Estude o Cânone:** [The Basics › Types for Tooling](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#types-for-tooling)
 
-**Objetivo:** Complete o código usando o autocomplete para chegar ao ferro.
-Tente digitar \`config.\` e veja as sugestões aparecerem!`,
-        objective: 'Usar o IntelliSense para completar o código e coletar o ferro.',
+**Seu Teste:** Complete o feitiço usando as visões do Scriptorium (autocomplete) para chegar ao ferro em (3, 0).
+*Dica: Digite \`config.\` e veja a magia acontecer!*`,
+        objective: 'Usar o auxílio do Scriptorium para completar o feitiço e minerar.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'iron', 'empty'],
@@ -199,21 +195,19 @@ export const level_1_4: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/basic-types.html#strictness',
     },
     mission: {
-        briefing: `# Missão 1.4 — A Auditoria do Código Legado ⚡
+        briefing: `# Ato 1.4 — O Ritual de Rigor (Clímax) ⚡
 
-O script de controle deixado pelo engenheiro desaparecido está cheio de problemas:
-variáveis sem tipo, uso de \`any\` e possíveis valores \`null\` ignorados.
+Encontramos pergaminhos antigos escritos por aprendizes descuidados. Eles estão repletos de magias instáveis: runas sem nome (\`any\`) e fluxos que podem secar (\`null\`) sem aviso.
 
-Com \`strict: true\` ativo, o compilador recusa todo esse código perigoso.
-**Você precisa corrigir tudo antes do deploy.**
+Como novo Mestre da Forja, você deve ativar o **Ritual de Rigor** (\`strict: true\`). Isso forçará cada magia a ser declarada com pureza total.
 
-📖 Leia: [The Basics › Strictness](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#strictness)
+📖 **Estude o Cânone:** [The Basics › Strictness](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#strictness)
 
-> \`noImplicitAny\` → proíbe variáveis sem tipo inferível  
-> \`strictNullChecks\` → força você a tratar \`null\` e \`undefined\`
+> \`noImplicitAny\` → Proíbe runas sem essência definida.  
+> \`strictNullChecks\` → Obriga o tratamento de fluxos vazios.
 
-**Objetivo:** Corrigir TODO o código legado, mover e minerar o ferro E o ouro.`,
-        objective: 'Coletar ferro em (1,1) e ouro em (3,3) com 0 erros de tipo.',
+**Seu Teste:** Purifique o código antigo, garantindo que o Golem colete o ferro (1,1) e o ouro (3,3).`,
+        objective: 'Purificar o código legado (0 erros em modo strict) e coletar dois minérios.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -225,25 +219,25 @@ Com \`strict: true\` ativo, o compilador recusa todo esse código perigoso.
     droneStart: { x: 0, y: 0 },
     hardware: { maxBattery: 100, maxTicks: 25 },
     apiTypeDefs: CH1_API,
-    starterCode: `// CÓDIGO LEGADO — Corrija todos os erros para fazer o deploy!
-// O compilador está com strict: true. Nenhum any, nenhum null ignorado.
+    starterCode: `// PERGAMINHOS IMPUROS — Purifique o código para o Golem aceitar o comando!
+// A Forja está em modo Estrito. Nenhuma runa sem essência, nenhum fluxo vazio.
 
-// ❌ Erro 1: parâmetros sem tipo (noImplicitAny)
+// ❌ Conflito 1: parâmetros sem essência (noImplicitAny)
 function goTo(x, y) {
   return move(x, y);
 }
 
-// ❌ Erro 2: variável pode ser null (strictNullChecks)
+// ❌ Conflito 2: o fluxo de material pode secar (strictNullChecks)
 function getMaterial(): string | null {
   return "ferro";
 }
 
 const material = getMaterial();
-// ❌ Erro 3: 'material' pode ser null — não pode passar direto para mine()
+// ❌ Conflito 3: 'material' pode ser null. A forja exige tratamento!
 await goTo(1, 1);
 await mine(material);
 
-// Depois de corrigir o ferro, vá buscar o ouro também
+// Após coletar o ferro, guie o Golem até o ouro
 await goTo(3, 3);
 await mine("ouro");
 `,

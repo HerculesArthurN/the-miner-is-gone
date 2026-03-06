@@ -12,8 +12,14 @@ export const chapter5Levels: ILevelDefinition[] = [
             section: 'Property Modifiers'
         },
         mission: {
-            briefing: `O log de missões do drone tem propriedades que não devem ser alteradas após a criação (\`readonly\`) e campos opcionais (\`?\`) para notas do operador.\n\nUse esses modificadores para garantir a integridade dos dados históricos.`,
-            objective: "Defina o tipo da Missão com propriedades 'readonly' e opcionais.",
+            briefing: `# Ato 5.1 — Runas Imutáveis 🛡️
+
+O pergaminho de missões da guilda possui segredos que não devem ser alterados após sua criação (\`readonly\`) e anotações opcionais (\`?\`) para observações do aprendiz.
+
+Use esses modificadores para garantir que a história da forja permaneça intocada pelos séculos.
+
+📖 **Estude o Cânone:** [Object Types › Property Modifiers](https://www.typescriptlang.org/docs/handbook/2/objects.html#property-modifiers)`,
+            objective: "Proteja os dados do Golem usando runas de leitura exclusivas (readonly) e campos opcionais.",
         },
         droneStart: { x: 0, y: 0 },
         initialGrid: [

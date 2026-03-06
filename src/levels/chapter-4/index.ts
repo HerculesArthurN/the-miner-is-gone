@@ -12,8 +12,12 @@ export const chapter4Levels: ILevelDefinition[] = [
             section: 'Function Type Expressions'
         },
         mission: {
-            briefing: `O drone agora aceita uma rotina de 'automação'. Você deve passar uma função que defina se o material encontrado deve ser minerado ou não.\n\nNo TS, definimos tipos de função como: \`(a: string) => void\`.`,
-            objective: "Defina o tipo da função de filtragem corretamente.",
+            briefing: `# Ato 4.1 — Ritmos Automáticos ⚙️
+
+O Golem agora aceita uma "Rotina de Automação". Você deve passar um encantamento callback que defina se o material encontrado na mina deve ser extraído ou ignorado.
+
+No TS, definimos tipos de feitiço como: \`(material: string) => boolean\`.`,
+            objective: "Defina o tipo da função de filtragem rúnica corretamente.",
         },
         droneStart: { x: 0, y: 0 },
         initialGrid: [
@@ -55,8 +59,12 @@ export const chapter4Levels: ILevelDefinition[] = [
             section: 'Generic Functions'
         },
         mission: {
-            briefing: `O drone precisa transmitir diferentes tipos de pacotes de dados. Em vez de criar uma função para cada tipo, vamos usar **Generics** para criar uma função transmissora universal.\n\nGenerics permitem que o tipo de entrada determine o tipo de saída ou comportamento.`,
-            objective: "Use uma função genérica para transmitir dados de minério.",
+            briefing: `# Ato 4.2 — O Transmissor Universal 📡
+
+A guilda precisa transmitir diferentes tipos de pergaminhos de dados. Ao invés de criar um feitiço para cada tipo, usaremos **Generics** para criar uma magia transmissora universal.
+
+Generics permitem que o ingrediente de entrada determine a forma do ritual final.`,
+            objective: "Use um feitiço genérico para transmitir dados de cristais.",
         },
         droneStart: { x: 0, y: 0 },
         initialGrid: [

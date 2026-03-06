@@ -5,7 +5,7 @@
 **Data:** 2026-02-24  
 **Status:** Em desenvolvimento
 
-> **Filosofia central:** Cada nível do jogo é a transposição interativa de **uma seção específica da documentação oficial do TypeScript**. O jogador aprende TypeScript jogando, e joga melhor lendo a documentação. O jogo e o Handbook são inseparáveis.
+> **Filosofia central:** Cada nível do jogo é a transposição interativa de **uma seção específica do Grimório Oficial do TypeScript (Handbook)**. O aprendiz entende a magia rúnica praticando na Forja. O jogo e o Handbook são um só.
 
 ---
 
@@ -100,9 +100,9 @@ Cada missão segue este ciclo:
 
 O Monaco Editor é configurado para ensinar, não apenas editar:
 
-- **IntelliSense restrito por nível**: o jogador só vê os métodos e tipos que pertencem ao capítulo atual. `api.scanNodes()` não aparece no autocomplete do Capítulo 1.
-- **Hover com link**: passar o mouse sobre `api.move()` mostra a assinatura tipada **e** um link para a seção do Handbook onde aquele padrão é ensinado.
-- **Deploy bloqueado**: enquanto existirem erros (squiggles vermelhos), o botão Deploy permanece desabilitado com uma tooltip: *"O Computador de Bordo recusa código com erros de tipagem."*
+- **Scriptorium (IntelliSense) restrito**: o aprendiz só vê os feitiços e runas que pertencem ao Ato atual.
+- **Hover Rúnico**: passar o mouse sobre `api.move()` revela o encantamento **e** um link para os Antigos Pergaminhos.
+- **Forja Bloqueada**: enquanto existirem erros rúnicos, o botão de Forjar permanece desabilitado: *"As runas estão instáveis. O Golem recusa o feitiço."*
 
 ### 2.3 O Grid de Mineração
 
@@ -110,26 +110,26 @@ Matriz bidimensional. Cada célula tem um estado com representação visual dist
 
 | Estado | Visual | Comportamento |
 |---|---|---|
-| `FogOfWar` | Névoa escura pulsante | Inacessível; requer `scan()` para revelar |
-| `Empty` | Chão de rocha | Transitável sem custo de bateria extra |
-| `Wall` | Parede sólida | Colisão fatal: interrompe execução |
-| `Ore` | Brilho neon por tipo de isótopo | Coletável via `mine()` |
-| `Hazard` | Lava / gás com animação | Dano progressivo à bateria |
-| `Portal` | Anel magnético girando | Teleporta o drone (introduzido no Capítulo 6) |
+| `FogOfWar` | Névoa mística escura | Inacessível; requer o feitiço `scan()` para revelar |
+| `Empty` | Chão de terra batida | Transitável sem custo de estamina extra |
+| `Wall` | Parede de pedra ancestral | Colisão fatal: interrompe o encantamento |
+| `Ore` | Ferro, Ouro ou Cristais | Coletável via `mine()` |
+| `Hazard` | Lava ou fumaça tóxica | Dano progressivo à estamina do Golem |
+| `Portal` | Fenda rúnica giratória | Teleporta o Golem (introduzido no Ato 6) |
 
 ### 2.4 Sistema de Ticks e Bateria
 
 Cada ação da API consome recursos. A ineficiência algorítmica tem consequência direta:
 
-| Ação | Ticks | Bateria |
+| Ação | Ticks rítmicos | Estamina |
 |---|---|---|
 | `api.move(dx, dy)` | 1 | 10 unidades |
 | `api.mine()` | 1 | 15 unidades |
 | `api.scan(dx, dy)` | 1 | 5 unidades |
 | `api.transmit(data)` | 0 | 0 |
-| Loop desnecessário | +N | +N × custo |
+| Cântico ineficiente | +N | +N × custo |
 
-**Thermal throttling**: código com complexidade O(n²) em grids grandes aciona uma animação de superaquecimento visível e dobra o custo de bateria por tick.
+**Superaquecimento Rúnico**: feitiços com complexidade O(n²) em câmaras grandes fazem as runas do Golem brilharem em vermelho instável, dobrando o custo de estamina por tick.
 
 ### 2.5 Sistema de Ranking por Missão
 
@@ -155,29 +155,29 @@ Cada missão é avaliada em três dimensões ao término:
 🏔️ **Ambiente:** A superfície da mina. Luz natural, corredores retos, sem perigos.  
 🎯 **Objetivo pedagógico:** Entender *por que* TypeScript existe e o que o compilador faz por nós.
 
-#### Nível 1.1 — Static Type Checking
-**Conceito:** O que é análise estática. Por que o TypeScript detecta erros antes de rodar.  
-**Missão:** O painel de controle tem um bug de tipo. O drone não parte.  
-**Desafio:** O jogador recebe um código JavaScript com um erro de tipo silencioso (somar `number + string`) e deve corrigi-lo adicionando anotações de tipo.  
-**Condição de vitória:** O código compila sem erros e o drone se move 3 casas para frente.
+#### Ato 1.1 — Static Type Checking
+**Conceito:** O que é análise estática. Por que as runas detectam erros antes do Golem partir.  
+**Missão:** O pergaminho de controle tem uma mancha de tinta. O Golem está estático.  
+**Desafio:** O aprendiz recebe um script com um erro rúnico silencioso (somar `number + string`) e deve apaziguar os espíritos da forja adicionando anotações de tipo.  
+**Condição de vitória:** O feitiço compila sem erros e o Golem avança 3 passos.
 
-#### Nível 1.2 — Non-Exception Failures
-**Conceito:** Erros que JavaScript ignora mas TypeScript rejeita (acessar propriedade inexistente, chamar não-função).  
-**Missão:** O sistema de telemetria retorna dados mal estruturados.  
-**Desafio:** Dado um objeto, o jogador identifica e corrige os acessos a propriedades que TypeScript sabe que não existem.  
-**Condição de vitória:** O drone lê a telemetria e coleta o minério na posição correta.
+#### Ato 1.2 — Non-Exception Failures
+**Conceito:** Erros que a lógica comum ignora mas a Magia Rúnica rejeita (acessar propriedade inexistente).  
+**Missão:** O sistema de telemetria da guilda retorna pergaminhos mal escritos.  
+**Desafio:** O aprendiz identifica e corrige os acessos a propriedades que o Grimório diz que não existem.  
+**Condição de vitória:** O Golem lê a telemetria e coleta o minério na câmara correta.
 
-#### Nível 1.3 — Types for Tooling (IntelliSense)
-**Conceito:** O IntelliSense como ferramenta de produtividade, não apenas de erro.  
-**Missão:** Completar um script incompleto usando apenas o autocomplete.  
-**Desafio:** O código starter tem lacunas (`___`). O jogador deve preenchê-las usando apenas o IntelliSense, sem consultar outros recursos.  
-**Condição de vitória:** Todos os gaps preenchidos corretamente; drone executa rota completa.
+#### Ato 1.3 — Types for Tooling (IntelliSense)
+**Conceito:** O Scriptorium (autocomplete) como guia espiritual, ajudando na escrita do feitiço.  
+**Missão:** Completar um pergaminho incompleto usando apenas as sugestões do editor.  
+**Desafio:** O código inicial tem lacunas (`___`). O aprendiz deve preenchê-las usando as visões do IntelliSense.  
+**Condição de vitória:** Todas as runas preenchidas; Golem executa a rota sagrada.
 
-#### Nível 1.4 — Strictness (`strict`, `noImplicitAny`, `strictNullChecks`)
-**Conceito:** Modos de rigor do compilador e por que usar o mais estrito possível.  
-**Missão (Clímax do Capítulo):** Ativar o modo rigoroso e corrigir todo o código legado da mineradora.  
-**Desafio:** O jogador recebe um arquivo `droneController.ts` cheio de `any` implícitos e possíveis `null`. Com `strict: true` ativado no tsconfig simulado, deve corrigir todos os erros até o código compilar limpo.  
-**Condição de vitória:** 0 erros com `strict: true`. O drone executa uma varredura de 10 casas sem falhas.
+#### Ato 1.4 — Strictness (`strict`, `noImplicitAny`, `strictNullChecks`)
+**Conceito:** O Olho do Mestre — por que usar o modo mais rigoroso da forja.  
+**Missão (Clímax do Ato):** Ativar o Ritual de Rigor e purificar todo o código antigo da guilda.  
+**Desafio:** O aprendiz recebe um arquivo `golemController.ts` cheio de `any` mundanos e possíveis `null`. Deve transmutar tudo em tipos puros.  
+**Condição de vitória:** 0 impurezas com `strict: true`. O Golem varre 10 câmaras sem hesitar.
 
 ---
 

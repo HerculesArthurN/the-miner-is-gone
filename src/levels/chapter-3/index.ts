@@ -12,8 +12,12 @@ export const chapter3Levels: ILevelDefinition[] = [
             section: 'typeof type guards'
         },
         mission: {
-            briefing: `O sensor de proximidade está retornando dados brutos. Precisamos identificar se o que temos à frente é uma string (tipo do material) ou se o sensor falhou.\n\nNo TypeScript, usamos o operador \`typeof\` para 'estreitar' (narrow) um tipo dentro de um bloco condicional.`,
-            objective: "Use 'typeof' para verificar se o resultado do scan é uma string antes de comparar.",
+            briefing: `# Ato 3.1 — O Protetor de Runas 🛡️
+
+Os cristais de percepção do Golem estão captando ecos confusos. Precisamos discernir se o que reluz à frente é matéria física (string) ou se houve uma interferência mágica.
+
+No TypeScript, usamos o operador \`typeof\` para **"Estreitar"** (Narrowing) uma possibilidade rúnica dentro de uma condição. Isso garante que o Golem só manipule o que ele realmente entende.`,
+            objective: "Use 'typeof' para confirmar se o eco é uma 'string' antes de minerar.",
         },
         droneStart: { x: 0, y: 0 },
         initialGrid: [
@@ -58,8 +62,12 @@ export const chapter3Levels: ILevelDefinition[] = [
             section: 'Truthiness narrowing'
         },
         mission: {
-            briefing: `Muitas vezes, funções podem retornar \`null\` ou \`undefined\`. No TS, podemos usar a 'verdade' (truthiness) para filtrar esses valores. \n\nSe \`scan()\` retornar \`null\`, tentar acessar propriedades dele causará um erro de runtime.`,
-            objective: "Handle the null result from scan() using a truthiness check.",
+            briefing: `# Ato 3.2 — O Vácuo da Incerteza 🌑
+
+Muitas vezes, suas magias podem retornar \`null\` ou \`undefined\` caso a percepção falhe. Na Magia Rúnica, podemos usar a **Verdade** (Truthiness) para filtrar esses vazios.
+
+Se tentarmos extrair essência de um \`null\`, o Golem entrará em colapso. Verifique a existência do resultado antes de prosseguir.`,
+            objective: "Lide com o resultado nulo da percepção usando uma checagem de existência rúnica.",
         },
         droneStart: { x: 0, y: 0 },
         initialGrid: [
@@ -102,8 +110,12 @@ export const chapter3Levels: ILevelDefinition[] = [
             section: 'The in operator narrowing'
         },
         mission: {
-            briefing: `O sensor agora detecta dois tipos de depósitos: Minerais Comuns (com \`type\`) e Isótopos Raros (com \`isotopeId\`).\n\nUse o operador \`in\` para verificar se a propriedade \`isotopeId\` existe no objeto antes de tratá-lo como um isótopo.`,
-            objective: "Identifique o Isótopo usando o operador 'in'.",
+            briefing: `# Ato 3.3 — Propriedades Espectrais 👻
+
+A percepção agora detecta dois tipos de depósitos: Minérios Comuns (com a runa \`type\`) e Isótopos Raros (com a marca \`isotopeId\`).
+
+Use o operador \`in\` para confirmar se a marca rúnica \`isotopeId\` existe no objeto antes de tratá-lo como um isótopo sagrado.`,
+            objective: "Identifique o Isótopo usando o operador rúnico 'in'.",
         },
         droneStart: { x: 0, y: 0 },
         initialGrid: [
@@ -145,8 +157,12 @@ export const chapter3Levels: ILevelDefinition[] = [
             section: 'Discriminated unions'
         },
         mission: {
-            briefing: `Este é o padrão mais poderoso do TS. Todos os resultados de scan agora têm uma propriedade literal comum chamada \`kind\`. \n\nDependendo do valor de \`kind\` ("success" ou "danger"), as outras propriedades mudam. O TS é inteligente o suficiente para entender essa lógica.`,
-            objective: "Use a propriedade 'kind' para diferenciar entre sucesso e perigo.",
+            briefing: `# Ato 3.4 — A União Revelação 🕯️
+
+Este é o padrão mais poderoso da nossa ordem. Todos os resultados de percepção agora possuem uma runa comum chamada \`kind\`.
+
+Dependendo do valor dessa runa ("success" ou "danger"), o restante do pergaminho se transforma! O Scriptorium é sábio o suficiente para entender essa transmutação de tipos.`,
+            objective: "Use a runa 'kind' para diferenciar entre sucesso e o perigo iminente.",
         },
         droneStart: { x: 0, y: 0 },
         initialGrid: [

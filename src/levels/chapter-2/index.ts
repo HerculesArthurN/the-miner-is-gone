@@ -28,17 +28,16 @@ export const level_2_1: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean',
     },
     mission: {
-        briefing: `# Missão 2.1 — Calibrando os Sensores
+        briefing: `# Ato 2.1 — Calibrando os Cristais ⚗️
+    
+Os sensores do Golem precisam ser calibrados com a essência rúnica correta. Sem a anotação precisa, as runas não brilham e a forja permanece fria.
 
-Os sensores do drone precisam ser calibrados com os tipos corretos.
-Configure as variáveis com as anotações de tipo adequadas.
+📖 **Estude o Cânone:** [Everyday Types › The primitives](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean)
 
-📖 Leia: [Everyday Types › The primitives](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean)
-
-- \`string\` → texto (nomes, materiais, mensagens)
-- \`number\` → números (coordenadas, temperatura, porcentagem)
-- \`boolean\` → verdadeiro/falso (flags, condições)`,
-        objective: 'Calibrar os 3 sensores com os tipos corretos e coletar o ferro.',
+- \`string\` → Pergaminhos, materiais e nomes.
+- \`number\` → Coordenadas, temperatura e peso.
+- \`boolean\` → Sim/Não, Ativo/Inativo.`,
+        objective: 'Calibrar os 3 cristais sensores com os tipos corretos para coletar o ferro.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -50,21 +49,21 @@ Configure as variáveis com as anotações de tipo adequadas.
     droneStart: { x: 0, y: 0 },
     hardware: { maxBattery: 100, maxTicks: 15 },
     apiTypeDefs: CH2_API,
-    starterCode: `// Calibre os sensores com os tipos corretos!
+    starterCode: `// Calibre os cristais com as essências rúnicas corretas!
 
-// Sensor 1: Nome do operador (texto)
+// Sensor 1: Nome do aprendiz (texto)
 const operatorName: ___ = "Hercules";
 
-// Sensor 2: Temperatura do reator (número)
+// Sensor 2: Calor da forja (número)
 const reactorTemp: ___ = 2400;
 
-// Sensor 3: Modo noturno ativo (verdadeiro/falso)
+// Sensor 3: Ritual noturno (verdadeiro/falso)
 const nightMode: ___ = true;
 
-console.log("Operador:", operatorName);
-console.log("Reator a", reactorTemp, "°C | Modo noturno:", nightMode);
+console.log("Aprendiz:", operatorName);
+console.log("Forja a", reactorTemp, "°C | Ritual noturno:", nightMode);
 
-// Com sensores calibrados, inicie a extração
+// Com os cristais calibrados, o Golem pode avançar
 await move(2, 1);
 await mine("ferro");
 `,
@@ -87,16 +86,15 @@ export const level_2_2: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays',
     },
     mission: {
-        briefing: `# Missão 2.2 — A Esteira Linear
+        briefing: `# Ato 2.2 — A Peregrinação Rúnica 🛤️
 
-O scanner detectou uma linha de minérios. Em vez de escrever o mesmo
-comando 4 vezes, use um **Array** tipado e um loop.
+O Scriptorium detectou uma linha de minérios sagrados. Ao invés de escrever o mesmo encantamento quatro vezes, use uma **Lista de Runas** (Array) tipada e um ciclo de repetição.
 
-📖 Leia: [Everyday Types › Arrays](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays)
+📖 **Estude o Cânone:** [Everyday Types › Arrays](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays)
 
-- \`number[]\` é o mesmo que \`Array<number>\`
-- Um array de coordenadas pode ser \`[number, number][]\` (array de tuplas)`,
-        objective: 'Coletar todos os 4 ferros na linha y=2 usando um array tipado.',
+- \`number[]\` é o mesmo que \`Array<number>\`.
+- Uma lista de coordenadas é mais poderosa que comandos isolados.`,
+        objective: 'Coletar os 4 ferros na linha y=2 usando uma lista rúnica (array) tipada.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -139,19 +137,16 @@ export const level_2_3: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any',
     },
     mission: {
-        briefing: `# Missão 2.3 — A Armadilha do \`any\`
+        briefing: `# Ato 2.3 — A Maldição do \`any\` 🌑
 
-O script abaixo usa \`any\` em todo lugar — o TypeScript aceita, mas
-perde toda a capacidade de te proteger.
+O pergaminho abaixo usa a runa proibida \`any\` em todo lugar. O TypeScript aceita, mas as visões do Scriptorium se apagam e a proteção da guilda desaparece.
 
-\`any\` é uma porta de saída que **desabilita** o sistema de tipos.
-Código com \`any\` pode parecer certo, mas vai falhar em runtime.
+\`any\` é uma fenda na realidade que **desabilita** a magia rúnica. Código assim pode parecer certo, mas o Golem desmoronará em runtime.
 
-📖 Leia: [Everyday Types › any](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any)
+📖 **Estude o Cânone:** [Everyday Types › any](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any)
 
-**Desafio:** Substitua TODOS os \`any\` por tipos concretos.
-Este nível tem \`forbiddenPatterns: ["any"]\` — usar \`any\` resulta em Bronze.`,
-        objective: 'Substituir todos os any por tipos corretos e coletar o ouro.',
+**Seu Teste:** Substitua cada \`any\` por essências concretas. Use a runa proibida e falhará em sua chancelaria (Medalha de Bronze).`,
+        objective: 'Banir o any substituindo por tipos corretos e coletar o ouro.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -194,21 +189,20 @@ export const level_2_4: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#functions',
     },
     mission: {
-        briefing: `# Missão 2.4 — Contratos de Função
+        briefing: `# Ato 2.4 — Contratos de Encantamento 📜
 
-Funções TypeScript têm contratos: você especifica os tipos dos
-parâmetros **e** o tipo de retorno.
+Encantamentos em TypeScript possuem contratos rígidos: você deve declarar a essência dos ingredientes (parâmetros) **e** o que a magia manifestará (retorno).
 
-📖 Leia: [Everyday Types › Functions](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#functions)
+📖 **Estude o Cânone:** [Everyday Types › Functions](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#functions)
 
 \`\`\`typescript
-function greet(name: string): string {
-  return "Olá, " + name;
+function benzer(nome: string): string {
+  return "Que as runas protejam " + nome;
 }
 \`\`\`
 
-**Objetivo:** Implementar 3 funções com assinaturas tipadas corretas.`,
-        objective: 'Implementar as 3 funções tipadas e coletar ferro e ouro.',
+**Seu Teste:** Manifeste 3 encantamentos com assinaturas rúnicas perfeitas.`,
+        objective: 'Implementar 3 funções tipadas para guiar o Golem ao ferro e ouro.',
     },
     initialGrid: [
         ['empty', 'iron', 'empty', 'empty', 'empty'],
@@ -267,21 +261,20 @@ export const level_2_5: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types',
     },
     mission: {
-        briefing: `# Missão 2.5 — O Relatório de Missão
+        briefing: `# Ato 2.5 — O Inventário da Guilda 💎
 
-O sistema de telemetria precisa de um tipo que descreva o relatório
-de cada missão. Algumas informações são obrigatórias; outras, opcionais.
+A Forja precisa de um pergaminho que descreva o conteúdo de cada extração. Algumas informações são relíquias obrigatórias; outras, apenas notas opcionais.
 
-📖 Leia: [Everyday Types › Object Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types)
+📖 **Estude o Cânone:** [Everyday Types › Object Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types)
 
 \`\`\`typescript
-// '?' marca a propriedade como opcional
-interface MissionReport {
-  timestamp: number;       // obrigatório
-  warnings?: string[];     // opcional
+// '?' marca a runa como opcional
+interface RelatorioExtração {
+  data: number;         // obrigatório
+  anotação?: string;    // opcional
 }
 \`\`\``,
-        objective: 'Modelar MissionReport com propriedades opcionais e minar o cristal.',
+        objective: 'Modelar o inventário com propriedades opcionais e extrair o cristal.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -337,19 +330,18 @@ export const level_2_6: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types',
     },
     mission: {
-        briefing: `# Missão 2.6 — O Escâner Polimórfico
+        briefing: `# Ato 2.6 — O Escâner do Destino 🧭
 
-O drone pode encontrar diferentes tipos de células. Em vez de usar
-\`string\` genérico, use um **Union Type** para restringir os valores possíveis.
+O Golem pode encontrar diferentes tipos de matéria. Ao invés de usar nomes mundanos (strings genéricas), use a **União de Runas** para restringir o destino.
 
-📖 Leia: [Everyday Types › Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
+📖 **Estude o Cânone:** [Everyday Types › Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
 
 \`\`\`typescript
-type CellKind = 'empty' | 'iron' | 'gold' | 'wall';
+type TipoCelula = 'vazio' | 'ferro' | 'ouro' | 'parede';
 \`\`\`
 
-**Objetivo:** Usar union types para classificar a célula e decidir a ação.`,
-        objective: 'Classificar as células e coletar apenas ferro e ouro (não tentar minerar paredes).',
+**Seu Teste:** Use a união rúnica para classificar o terreno e agir com sabedoria.`,
+        objective: 'Classificar as células e coletar apenas ferro e ouro, ignorando paredes ancestrais.',
     },
     initialGrid: [
         ['empty', 'iron', 'wall', 'gold', 'empty'],
@@ -618,22 +610,21 @@ export const level_2_10: ILevelDefinition = {
         url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#enums',
     },
     mission: {
-        briefing: `# Missão 2.10 — O Sistema de Status ⚡ CLÍMAX
+        briefing: `# Ato 2.10 — O Ciclo de Poder ⚡ CLÍMAX
 
-Você chegou ao desafio final do Capítulo 2!
+Você alcançou o portal final do Ato 2!
 
-Use \`enum\` para modelar os estados do drone e o grau dos minérios.
-O drone deve percorrer um ciclo completo de estados: Idle → Mining → Returning → Idle.
+Use \`enum\` para modelar as fases de despertar do Golem e a pureza dos minérios. O constructo deve percorrer um ciclo rítmico: Idle → Mining → Returning → Idle.
 
-📖 Leia: [Everyday Types › Enums](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#enums)
+📖 **Estude o Cânone:** [Everyday Types › Enums](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#enums)
 
 \`\`\`typescript
-enum DroneStatus { Idle, Mining, Returning, Critical }
-enum OreGrade { A = 'A', B = 'B', C = 'C' }
+enum GolemStatus { Idle, Mining, Returning, Critical }
+enum GrauMinerio { A = 'A', B = 'B', C = 'C' }
 \`\`\`
 
-**Objetivo:** Implementar o ciclo completo de estados e coletar todos os minérios de grau A.`,
-        objective: 'Coletar apenas minérios de grau A usando enums para controle de status.',
+**Seu Teste:** Forje o ciclo completo de estados e colete apenas os minérios de pureza sagrada (Grau A).`,
+        objective: 'Comandar o Golem através do ciclo de estados usando enums e coletar minérios Grau A.',
     },
     initialGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],

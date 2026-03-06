@@ -2,59 +2,61 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ChevronRight, Database, Box, Layers, Workflow, GitMerge, ShieldCheck, Terminal, BrainCircuit } from 'lucide-react';
 
-const chapters = [
-    { id: 1, title: 'O Básico', icon: Terminal, desc: 'Domine tipos de variáveis, interfaces e assinaturas de funções no vácuo.' },
-    { id: 2, title: 'União e Intersecção', icon: GitMerge, desc: 'Componha lógica complexa mesclando fluxos de dados díspares.' },
-    { id: 3, title: 'Uniões Discriminadas', icon: ShieldCheck, desc: 'Implemente máquinas de estado à prova de falhas para a navegação do drone.' },
-    { id: 4, title: 'Generics', icon: Box, desc: 'Construa sistemas de automação reutilizáveis que se adaptam a qualquer recurso.' },
-    { id: 5, title: 'Tipos de Utilidade', icon: Layers, desc: 'Extraia e transforme estruturas existentes com operadores de alto nível.' },
-    { id: 6, title: 'Tipos Condicionais', icon: Workflow, desc: 'Programe lógica reativa que se ramifica durante a compilação.' },
-    { id: 7, title: 'Literais de Template', icon: Database, desc: 'Analise strings e schemas complexos em nível de tipo.' },
-    { id: 8, title: 'Ginástica de Tipos', icon: BrainCircuit, desc: 'Resolva desafios de nível LeetCode usando apenas o compilador TS.' },
+const acts = [
+    { id: 1, title: 'Ato I: A Superfície', icon: Terminal, desc: 'Domine tipos de variáveis, interfaces e assinaturas de funções na forja básica.' },
+    { id: 2, title: 'Ato II: O Labirinto', icon: ShieldCheck, desc: 'Técnicas de narrowing, união e intersecção para guiar o golem no subsolo.' },
+    { id: 3, title: 'Ato III: A Câmara Modular', icon: Box, desc: 'Extraia o poder dos Generics. Construa sistemas adaptativos e cofres seguros.' },
+    { id: 4, title: 'Ato IV: A Linhagem', icon: Layers, desc: 'Arquitetura avançada. Herança, classes abstratas e controle de visibilidade arcana.' },
+    { id: 5, title: 'Ato V: O Arquiteto', icon: BrainCircuit, desc: 'Ginástica de Tipos pura. Mapped Types e manipulação condicional no cume da montanha.' },
 ];
 
 export const SkillTree: React.FC = () => {
     return (
         <div className="relative py-20 px-4">
-            <div className="max-w-4xl mx-auto space-y-12">
-                {chapters.map((chapter, i) => (
+            <div className="max-w-4xl mx-auto space-y-16">
+                {acts.map((act, i) => (
                     <motion.div
-                        key={chapter.id}
-                        initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                        key={act.id}
+                        initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: i * 0.1 }}
+                        transition={{ duration: 0.8, delay: i * 0.15 }}
                         viewport={{ once: true }}
-                        className={`flex items-center gap-8 ${i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                        className={`flex items-start gap-8 ${i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
                     >
-                        <div className="hidden md:flex flex-col items-center justify-center">
-                            <div className="w-12 h-12 rounded-none border border-neon-cyan flex items-center justify-center bg-neon-cyan/10 glow-cyan">
-                                <chapter.icon size={24} className="text-neon-cyan" />
+                        {/* Node timeline center */}
+                        <div className="hidden md:flex flex-col items-center justify-center relative translate-y-4">
+                            <div className="w-16 h-16 bg-[#1a1412] border-[2px] border-[#3e342f] flex items-center justify-center relative z-10" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}>
+                                <act.icon size={24} className="text-[#e5d8b5]" />
                             </div>
-                            {i < chapters.length - 1 && (
-                                <div className="w-[1px] h-12 bg-gradient-to-b from-neon-cyan to-transparent mt-4" />
+                            {i < acts.length - 1 && (
+                                <div className="absolute top-16 w-[2px] h-32 bg-gradient-to-b from-[#3e342f] to-transparent" />
                             )}
                         </div>
 
-                        <div className={`flex-1 p-6 border border-slate-800 bg-slate-900/50 hud-border ${i % 2 === 0 ? 'hud-border-tr hud-border-bl' : 'hud-border-tl hud-border-br'} backdrop-blur-md hover:border-slate-700 transition-colors group`}>
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-[10px] font-mono text-neon-cyan/60 tracking-widest uppercase">
-                                    Capítulo 0{chapter.id}
+                        {/* Node Card */}
+                        <div className={`flex-1 p-8 border-[2px] border-[#3e342f] bg-[#1a1412] relative group hover:border-[#5c4d3c] transition-colors`} style={{ clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)' }}>
+                            <div className="flex items-center justify-between mb-4">
+                                <span className="text-[10px] font-mono text-[#00f2ff]/60 tracking-widest uppercase">
+                                    [ RUNE_UNLOCK_{act.id} ]
                                 </span>
-                                <ChevronRight size={14} className="text-slate-600 group-hover:text-neon-cyan transition-colors" />
+                                <ChevronRight size={14} className="text-[#8c7a6b] group-hover:text-[#00f2ff] transition-colors" />
                             </div>
-                            <h3 className="text-xl font-bold font-rajdhani text-white mb-2 uppercase tracking-tight">
-                                {chapter.title}
+                            <h3 className="text-2xl font-bold font-rajdhani text-[#e5d8b5] mb-3 uppercase tracking-tight">
+                                {act.title}
                             </h3>
-                            <p className="text-sm text-slate-400 font-mono leading-relaxed">
-                                {chapter.desc}
+                            <p className="text-sm text-[#8c7a6b] font-mono leading-relaxed">
+                                {act.desc}
                             </p>
+                            
+                            {/* Hover Runic Glow */}
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,242,255,0.05)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                         </div>
                     </motion.div>
                 ))}
             </div>
 
             {/* Background decoration */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-slate-800 -z-10" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-[#1a1412] -z-10" />
         </div>
     );
 };

@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 
-const lines = [
-    '// INICIALIZANDO LEITURA DO SISTEMA...',
-    'const missao = {',
-    '  status: "CRÍTICO",',
-    '  localizacao: "Setor 7G - Cinturão de Asteroides",',
-    '  objetivo: "Automatizar Drone de Mineração #42",',
-    '  protocolo: "Implementação Avançada de TypeScript"',
+const scrollLines = [
+    '// SCRIPTORIUM LOG START',
+    'const runeForge = {',
+    '  status: "ACTIVE",',
+    '  location: "Ancient Sector 7G",',
+    '  objective: "Automate Golem Scribe #42",',
+    '  protocol: "Advanced TypeScript Implementation"',
     '};',
     '',
-    'function inicializarResgate(idEngenheiro: string) {',
-    '  if (idEngenheiro === "DESAPARECIDO") {',
-    '    throw new Error("Falha Operacional: Engenheiro não encontrado!");',
+    'function awakenGolem(overseerId: string) {',
+    '  if (overseerId === "MISSING") {',
+    '    throw new Error("Operational Failure: Overseer not found.");',
     '  }',
-    '  return "Aguardando Recrutas...";',
+    '  return "Awaiting Recruits...";',
     '}',
     '',
-    'const status = inicializarResgate("DESAPARECIDO");',
-    '// [ERRO CRÍTICO DETECTADO: USO DE ANY PROIBIDO]'
+    'const awakeningStatus = awakenGolem("MISSING");',
+    '// [CRITICAL ERROR: USE OF ANY FORBIDDEN]'
 ];
 
 export const TerminalSim: React.FC = () => {
@@ -27,8 +27,8 @@ export const TerminalSim: React.FC = () => {
     const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
     useEffect(() => {
-        if (currentLineIndex < lines.length) {
-            const line = lines[currentLineIndex];
+        if (currentLineIndex < scrollLines.length) {
+            const line = scrollLines[currentLineIndex];
             if (currentCharIndex < line.length) {
                 const timeout = setTimeout(() => {
                     setDisplayedLines(prev => {
@@ -51,54 +51,64 @@ export const TerminalSim: React.FC = () => {
     }, [currentLineIndex, currentCharIndex]);
 
     return (
-        <div className="bg-[#1e1e1e]/80 backdrop-blur-xl border border-slate-700/50 p-6 font-mono text-sm leading-relaxed shadow-2xl relative overflow-hidden group">
-            {/* HUD Accents */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-cyan/50" />
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-cyan/50" />
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-cyan/50" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-cyan/50" />
+        <div className="bg-[#ebd5b3] backdrop-blur-xl border-[2px] border-[#5c4d3c] p-6 font-mono text-sm leading-relaxed shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group mix-blend-normal text-[#2a221f]">
+            {/* Parchment Noise Overlay */}
+            <div className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+
+            {/* Iron Corners */}
+            <div className="absolute top-0 left-0 w-3 h-3 bg-[#3e342f] z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
+            <div className="absolute top-0 right-0 w-3 h-3 bg-[#3e342f] z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }} />
+            <div className="absolute bottom-0 left-0 w-3 h-3 bg-[#3e342f] z-10" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%)' }} />
+            <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#3e342f] z-10" style={{ clipPath: 'polygon(100% 0, 0 100%, 100% 100%)' }} />
 
             {/* Editor Header */}
-            <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-2">
-                <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/40" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/40" />
-                </div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-tighter ml-2">
-                    sequencia-de-boot.ts — controle-do-drone
+            <div className="flex items-center gap-2 mb-4 border-b-2 border-[#8c7a6b]/30 pb-2 relative z-10">
+                <div className="flex gap-2 font-mono text-xs font-bold text-[#8c7a6b]">
+                    <span className="text-[#8c7a6b]">[</span>
+                    <span className="text-[#ff5500]">awaken_protocol.ts</span>
+                    <span className="text-[#8c7a6b]">]</span>
                 </div>
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-1 relative z-10">
                 {displayedLines.map((line, i) => {
                     if (typeof line !== 'string') return null;
-                    let colorClass = 'text-slate-300';
-                    if (line.startsWith('//')) colorClass = 'text-slate-600 italic';
-                    else if (line.includes('const') || line.includes('function') || line.includes('if') || line.includes('return') || line.includes('throw')) colorClass = 'text-purple-400';
-                    else if (line.includes('"')) colorClass = 'text-amber-200';
+                    
+                    let colorClass = 'text-[#3e342f] font-semibold';
+                    let underlineContent = false;
+                    
+                    if (line.startsWith('//')) colorClass = 'text-[#8c7a6b] italic';
+                    else if (line.includes('const') || line.includes('function') || line.includes('if') || line.includes('return') || line.includes('throw')) colorClass = 'text-[#0055ff] font-bold';
+                    else if (line.includes('"')) {
+                        colorClass = 'text-[#b34700]';
+                        if (line.includes('MISSING')) underlineContent = true;
+                    }
 
-                    if (line.includes('CRÍTICO')) colorClass = 'text-red-400 font-bold';
-                    if (line.includes('ANY PROIBIDO')) colorClass = 'text-red-500 font-bold bg-red-500/10 px-1';
+                    if (line.includes('CRITICAL')) colorClass = 'text-[#ff0000] font-bold uppercase';
 
                     return (
-                        <div key={i} className="flex gap-4">
-                            <span className="w-4 text-right text-slate-700 select-none text-[10px]">{i + 1}</span>
-                            <span className={colorClass}>{line}</span>
+                        <div key={i} className="flex gap-4 group/line">
+                            <span className="w-6 text-right text-[#5c4d3c] select-none text-[10px] tabular-nums opacity-60 font-bold">{i + 1}</span>
+                            <span className={colorClass}>
+                                {underlineContent && line.includes('MISSING') ? (
+                                    <>
+                                        {line.split('"MISSING"')[0]}
+                                        <span className="text-[#ff0000] underline decoration-wavy decoration-[#ff0000]/70">"MISSING"</span>
+                                        {line.split('"MISSING"')[1]}
+                                    </>
+                                ) : line}
+                            </span>
                         </div>
                     );
                 })}
-                {currentLineIndex < lines.length && (
+                {currentLineIndex < scrollLines.length && (
                     <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ duration: 0.8, repeat: Infinity }}
-                        className="inline-block w-2 h-4 bg-neon-cyan ml-1 translate-y-1"
+                        className="inline-block w-2 h-4 bg-[#ff5500] ml-1 translate-y-1"
                     />
                 )}
             </div>
-
-            {/* Decorative scanline overlay */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]" />
         </div>
     );
 };

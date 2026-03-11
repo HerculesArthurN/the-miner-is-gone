@@ -4,10 +4,11 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 > **"O Mestre Forjador desapareceu, deixando apenas o antigo Grimório. Salve a Guilda operando Golens ancestrais através do poder das Runas de Tipagem Estrita."**
 
-**The Master is Gone** é uma experiência imersiva com estética **Bright Fantasy / Scriptorium**, onde o código TypeScript é a linguagem rúnica que dá vida a gigantes de pedra e ferro. O jogo não é apenas um tutorial; é uma transposição interativa e lúdica do **TypeScript Handbook Oficial**.
+**The Master is Gone** é uma experiência imersiva, onde o código TypeScript é a linguagem rúnica que dá vida a gigantes de pedra e ferro.
 
 ---
 
@@ -23,20 +24,20 @@ Este projeto abraça uma identidade visual inspirada em pergaminhos antigos, pai
 
 ## 💎 A Filosofia: "Ler os Antigos Pergaminhos"
 
-Diferente de cursos tradicionais, aqui a documentação é sua fonte de poder. Cada nível é mapeado diretamente para uma seção específica do Handbook.
+Diferente de cursos tradicionais, aqui a documentação é sua fonte de poder. Cada nível é mapeado diretamente para uma seção específica.
 
 ```text
 Documentação 📖 → Missão 🎯 → Código 💻 → Consequência Visual 🚀 → Compreensão ✅
 ```
 
-Ao completar o jogo, você terá percorrido integralmente os capítulos fundamentais do TypeScript, transformando a leitura técnica em memória muscular.
+Ao completar o jogo, você terá percorrido integralmente os capítulos fundamentais do TypeScript, transformando a leitura técnica em memória.
 
 ---
 
 ## 🛠️ Mecânicas de Jogo
 
 ### ⌨️ Magia Progressiva (IntelliSense)
-O editor (Scriptorium/Monaco) é configurado para injetar tipos dinamicamente. No Ato I, você tem acesso apenas aos feitiços básicos. Conforme avança no Handbook, novas APIs e magias complexas são desbloqueadas no seu IntelliSense.
+O editor é configurado para injetar tipos dinamicamente. No Ato I, você tem acesso apenas aos feitiços básicos. Conforme avança, novas APIs e magias complexas são desbloqueadas.
 
 ### 🔋 Essência Vital (Estamina e Ritmo)
 Cada instrução (`move`, `mine`, `scan`) consome a estamina vital do Golem. O objetivo não é apenas resolver o enigma, mas tecer encantamentos eficientes. Códigos com complexidade rúnica desnecessária (O(n²)) superaquecem o constructo, drenando energia em dobro!
@@ -67,8 +68,8 @@ Cada instrução (`move`, `mine`, `scan`) consome a estamina vital do Golem. O o
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/HerculesArthurN/the-miner-is-gone.git
-cd the-miner-is-gone
+git clone https://github.com/HerculesArthurN/the-master-is-gone.git
+cd the-master-is-gone
 ```
 
 2. Instale as dependências:
@@ -103,8 +104,16 @@ Todos os capítulos implementados com validação por Transpiler real no browser
 
 ## 👤 Autor
 
-**Hercules Arthur Nardelli**
-*Engenheiro de Software em Formação | Especialista em PWA & Local-First Architecture*
+**Hercules Arthur Nardelli - Engenheiro de Software **
 
 ---
-*Este projeto é uma jornada de aprendizado inspirada pela excelência técnica do TypeScript Handbook.*
+
+## ⚖️ Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+---
+
+*Este projeto é uma jornada de aprendizado inspirado no jogo The Farmer Was Replaced criado para compor o projeto de extensão da Faculdade.
+
+---
